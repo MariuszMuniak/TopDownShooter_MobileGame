@@ -7,8 +7,12 @@ namespace TDS_MG.Combat
 {
     public class PlayerFighter : MonoBehaviour
     {
+        [SerializeField] Transform weaponPlace = null;
+        [SerializeField] Weapon gun = null;
         WeaponType weaponType;
         Animator animator;
+        Transform characterModel;
+        Weapon currentWeapon;
 
         private void Awake()
         {
@@ -17,12 +21,15 @@ namespace TDS_MG.Combat
 
         private void Start()
         {
-            weaponType = WeaponType.Rifle;
+            AttachWeapon();
+            characterModel = GetComponent<PlayerMover>().GetCharacterModel();
         }
 
         private void Update()
         {
             UpdateAnimator();
+            FaceWeaponPointForward();
+            Fire();
         }
 
         private void UpdateAnimator()
@@ -68,6 +75,35 @@ namespace TDS_MG.Combat
 
             animator.SetFloat("Body_Horizontal_f", bodyHorizontal);
             animator.SetFloat("Body_Vertical_f", bodyVertical);
+        }
+
+        private void FaceWeaponPointForward()
+        {
+            Vector3 point = new Vector3
+            {
+                x = 0f,
+                y = characterModel.InverseTransformPoint(weaponPlace.position).y,
+                z = currentWeapon.GetRange()
+            };
+
+            point = characterModel.TransformPoint(point);
+            weaponPlace.LookAt(point);
+        }
+
+        private void Fire()
+        {
+            if (currentWeapon == null) { return; }
+
+            if (currentWeapon.CanAttack())
+            {
+                currentWeapon.Fire();
+            }
+        }
+
+        private void AttachWeapon()
+        {
+            currentWeapon = Instantiate(gun, weaponPlace);
+            weaponType = currentWeapon.GetWeaponType();
         }
     }
 }

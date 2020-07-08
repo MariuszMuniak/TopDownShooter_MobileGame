@@ -34,6 +34,8 @@ namespace TDS_MG.Movement
 
         public bool IsRunning() => moveJoystick.Direction != Vector2.zero;
 
+        public Transform GetCharacterModel() => characterModel;
+
         private void Move()
         {
             if (moveJoystick == null) { return; }

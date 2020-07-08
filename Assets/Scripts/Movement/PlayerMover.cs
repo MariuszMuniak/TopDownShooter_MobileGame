@@ -30,8 +30,9 @@ namespace TDS_MG.Movement
             Move();
             Rotation();
             UpdateAnimator();
-            Debug.Log("PF: " + transform.forward + "  CHF: " + characterModel.forward);
         }
+
+        public bool IsRunning() => moveJoystick.Direction != Vector2.zero;
 
         private void Move()
         {

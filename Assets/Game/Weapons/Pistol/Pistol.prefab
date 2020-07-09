@@ -668,6 +668,7 @@ MonoBehaviour:
   timeBetweenAttack: 0.5
   range: 10
   radius: 0.5
+  projectileSpeed: 10
   handle: {fileID: 2832582939282507249}
   projectile: {fileID: 5134419961522586980, guid: dacf0b8c7f3564d4094b3acf416a93f5,
     type: 3}

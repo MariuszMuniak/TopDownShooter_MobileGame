@@ -8,7 +8,7 @@ namespace TDS_MG.Combat
     public class PlayerFighter : MonoBehaviour
     {
         [SerializeField] Transform weaponPlace = null;
-        [SerializeField] Weapon gun = null;
+
         WeaponType weaponType;
         Animator animator;
         Transform characterModel;
@@ -21,7 +21,7 @@ namespace TDS_MG.Combat
 
         private void Start()
         {
-            AttachWeapon();
+            AttachWeapon(WeaponType.Pistol);
             characterModel = GetComponent<PlayerMover>().GetCharacterModel();
         }
 
@@ -38,6 +38,8 @@ namespace TDS_MG.Combat
 
             float bodyHorizontal;
             float bodyVertical;
+            float headHorizontal = 0f;
+            float headVertical = 0f;
 
             bool isRunning = GetComponent<PlayerMover>().IsRunning();
 
@@ -64,17 +66,21 @@ namespace TDS_MG.Combat
                 if (isRunning)
                 {
                     bodyHorizontal = 0.3f;
-                    bodyVertical = 0.6f;
+                    bodyVertical = 0.0f;
+                    headHorizontal = -0.4f;
                 }
                 else
                 {
-                    bodyHorizontal = 0f;
-                    bodyVertical = 0.6f;
+                    bodyHorizontal = 0.55f;
+                    bodyVertical = 0f;
+                    headHorizontal = -0.9f;
                 }
             }
 
             animator.SetFloat("Body_Horizontal_f", bodyHorizontal);
             animator.SetFloat("Body_Vertical_f", bodyVertical);
+            animator.SetFloat("Head_Horizontal_f", headHorizontal);
+            animator.SetFloat("Head_Vertical_f", headVertical);
         }
 
         private void FaceWeaponPointForward()
@@ -100,10 +106,19 @@ namespace TDS_MG.Combat
             }
         }
 
-        private void AttachWeapon()
+        private void AttachWeapon(WeaponType weaponType)
         {
-            currentWeapon = Instantiate(gun, weaponPlace);
-            weaponType = currentWeapon.GetWeaponType();
+            WeaponCollection weaponCollection = GetComponent<WeaponCollection>();
+            weaponCollection.HideAllWeapons();
+
+            currentWeapon = weaponCollection.ShowWeapon(weaponType);
+
+            currentWeapon.transform.parent = weaponPlace;
+            currentWeapon.gameObject.transform.localPosition = Vector3.zero;
+            currentWeapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            currentWeapon.gameObject.transform.localScale = Vector3.one;
+
+            this.weaponType = currentWeapon.GetWeaponType();
         }
     }
 }

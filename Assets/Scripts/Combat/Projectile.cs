@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.Attributes;
 using UnityEngine;
 
 namespace TDS_MG.Combat
@@ -18,13 +19,8 @@ namespace TDS_MG.Combat
 
         private void OnCollisionEnter(Collision collision)
         {
-            ContactPoint contactPoint = collision.GetContact(0);
-
-            if (hitEffect != null)
-            {
-                Instantiate(hitEffect, contactPoint.point, Quaternion.identity);
-            }
-
+            InstantiateHitEffect(collision);
+            EnemyTakeDamage(collision);
             Destroy(gameObject);
         }
 
@@ -33,6 +29,31 @@ namespace TDS_MG.Combat
             this.damage = damage;
             this.speed = speed;
             Destroy(gameObject, lifetime);
+        }
+
+        private void InstantiateHitEffect(Collision collision)
+        {
+            ContactPoint contactPoint = collision.GetContact(0);
+
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, contactPoint.point, Quaternion.identity);
+            }
+        }
+
+        private void EnemyTakeDamage(Collision collision)
+        {
+            Health health = null;
+
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                health = collision.gameObject.GetComponentInParent<Health>();
+            }
+
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
         }
     }
 }

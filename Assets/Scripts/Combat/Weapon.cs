@@ -11,12 +11,13 @@ namespace TDS_MG.Combat
         [SerializeField] float timeBetweenAttack = 0.5f;
         [SerializeField] float range = 10f;
         [SerializeField] float radius = 0.5f;
+        [SerializeField] float projectileSpeed = 10f;
         [SerializeField] Transform handle = null;
         [SerializeField] GameObject projectile = null;
         [SerializeField] GameObject muzzle = null;
         [SerializeField] WeaponComponents weaponComponents = new WeaponComponents();
         [Space]
-        [SerializeField] Mesh gizmoMesh;
+        [SerializeField] Mesh gizmoMesh = null;
 
         float timeSinceLastAttack = Mathf.Infinity;
 
@@ -52,9 +53,18 @@ namespace TDS_MG.Combat
 
             GameObject instantiatedProjectil = Instantiate(projectile, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation);
             Vector3 point = instantiatedProjectil.transform.TransformPoint(localPoint);
+
             instantiatedProjectil.transform.LookAt(point);
+            instantiatedProjectil.GetComponent<Projectile>().SetUp(damage, projectileSpeed, GetMaxLifetime());
 
             timeSinceLastAttack = 0f;
+        }
+
+        private float GetMaxLifetime()
+        {
+            float lifetime = range / projectileSpeed;
+
+            return lifetime;
         }
 
         private void OnDrawGizmos()

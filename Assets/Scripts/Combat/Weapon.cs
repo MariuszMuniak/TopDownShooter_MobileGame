@@ -34,7 +34,14 @@ namespace TDS_MG.Combat
 
         public bool CanAttack()
         {
-            return timeSinceLastAttack >= timeBetweenAttack;
+            bool hitEnemy = false;
+
+            if (Physics.Raycast(weaponComponents.Barrel.position, weaponComponents.Barrel.forward, out RaycastHit hit, range))
+            {
+                hitEnemy = hit.collider.gameObject.CompareTag("Enemy");
+            }
+
+            return timeSinceLastAttack >= timeBetweenAttack && hitEnemy;
         }
 
         public void Fire()

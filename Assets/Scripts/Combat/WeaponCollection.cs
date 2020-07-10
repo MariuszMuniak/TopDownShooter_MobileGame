@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.UI;
 using UnityEngine;
 
 namespace TDS_MG.Combat
@@ -7,10 +8,13 @@ namespace TDS_MG.Combat
     public class WeaponCollection : MonoBehaviour
     {
         [SerializeField] Weapon[] weapons;
+        [SerializeField] WeaponIcon[] weaponIcons;
 
         List<Weapon> collection = new List<Weapon>();
 
-        void Start()
+        int weaponIndex = 0;
+
+        private void Awake()
         {
             InstantiateAllWeapons();
             HideAllWeapons();
@@ -29,13 +33,49 @@ namespace TDS_MG.Combat
             }
         }
 
-        public Weapon ShowWeapon(WeaponType weaponType)
+        public Sprite GetWeaponIcon(WeaponType weaponType)
         {
-            Weapon weapon = GetWeapon(weaponType);
+            foreach (WeaponIcon weaponIcon in weaponIcons)
+            {
+                if (weaponType == weaponIcon.weaponType)
+                {
+                    return weaponIcon.icon;
+                }
+            }
 
+            return null;
+        }
+
+        public Weapon NextWeapon()
+        {
+            NextWeaponIndex();
+
+            Weapon weapon = collection[weaponIndex];
+
+            return ShowWeapon(weapon);
+        }
+
+        public Weapon PreviousWeapon()
+        {
+            PreviousWeaponIndex();
+
+            Weapon weapon = collection[weaponIndex];
+
+            return ShowWeapon(weapon);
+        }
+
+        public Weapon ShowWeapon(Weapon weapon)
+        {
             weapon.gameObject.SetActive(true);
 
             return weapon;
+        }
+
+        public Weapon ShowDefaultWeapon()
+        {
+            Weapon weapon = GetWeapon(WeaponType.Pistol);
+
+            return ShowWeapon(weapon);
         }
 
         private void InstantiateAllWeapons()
@@ -63,6 +103,26 @@ namespace TDS_MG.Combat
             }
 
             return null;
+        }
+
+        private void NextWeaponIndex()
+        {
+            weaponIndex++;
+
+            if (weaponIndex >= collection.Count)
+            {
+                weaponIndex = 0;
+            }
+        }
+
+        private void PreviousWeaponIndex()
+        {
+            weaponIndex--;
+
+            if (weaponIndex < 0)
+            {
+                weaponIndex = collection.Count - 1;
+            }
         }
     }
 }

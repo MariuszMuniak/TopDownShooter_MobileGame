@@ -11,18 +11,20 @@ namespace TDS_MG.Combat
 
         WeaponType weaponType;
         Animator animator;
+        WeaponCollection weaponCollection;
         Transform characterModel;
         Weapon currentWeapon;
 
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
+            weaponCollection = GetComponent<WeaponCollection>();
         }
 
         private void Start()
         {
-            AttachWeapon(WeaponType.Pistol);
             characterModel = GetComponent<PlayerMover>().GetCharacterModel();
+            AttachDefaultWeapon();
         }
 
         private void Update()
@@ -30,6 +32,22 @@ namespace TDS_MG.Combat
             UpdateAnimator();
             FaceWeaponPointForward();
             Fire();
+        }
+
+        public Sprite NextWeapon()
+        {
+            Weapon weapon = weaponCollection.NextWeapon();
+            AttachWeapon(weapon);
+
+            return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
+        }
+
+        public Sprite PreviousWeapon()
+        {
+            Weapon weapon = weaponCollection.PreviousWeapon();
+            AttachWeapon(weapon);
+
+            return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
         }
 
         private void UpdateAnimator()
@@ -85,6 +103,8 @@ namespace TDS_MG.Combat
 
         private void FaceWeaponPointForward()
         {
+            if (currentWeapon == null) { return; }
+
             Vector3 point = new Vector3
             {
                 x = 0f,
@@ -106,12 +126,18 @@ namespace TDS_MG.Combat
             }
         }
 
-        private void AttachWeapon(WeaponType weaponType)
+        private void AttachDefaultWeapon()
         {
-            WeaponCollection weaponCollection = GetComponent<WeaponCollection>();
+            Weapon weapon = weaponCollection.ShowDefaultWeapon();
+
+            AttachWeapon(weapon);
+        }
+
+        private void AttachWeapon(Weapon weapon)
+        {
             weaponCollection.HideAllWeapons();
 
-            currentWeapon = weaponCollection.ShowWeapon(weaponType);
+            currentWeapon = weaponCollection.ShowWeapon(weapon);
 
             currentWeapon.transform.parent = weaponPlace;
             currentWeapon.gameObject.transform.localPosition = Vector3.zero;

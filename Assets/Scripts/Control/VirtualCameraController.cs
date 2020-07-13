@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TDS_MG.Controller
+namespace TDS_MG.Control
 {
     public class VirtualCameraController : MonoBehaviour
     {

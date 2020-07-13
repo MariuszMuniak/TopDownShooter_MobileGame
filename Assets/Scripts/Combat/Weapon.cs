@@ -46,7 +46,7 @@ namespace TDS_MG.Combat
 
         public void Fire()
         {
-            Instantiate(muzzle, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation);
+            Instantiate(muzzle, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation, weaponComponents.Barrel);
 
             Vector3 localPoint = Vector3.zero;
 

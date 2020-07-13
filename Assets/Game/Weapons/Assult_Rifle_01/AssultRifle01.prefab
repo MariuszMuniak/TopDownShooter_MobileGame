@@ -640,7 +640,7 @@ MonoBehaviour:
   radius: 1
   projectileSpeed: 20
   handle: {fileID: 4353495376030716351}
-  projectile: {fileID: 5134419961522586980, guid: dacf0b8c7f3564d4094b3acf416a93f5,
+  projectile: {fileID: 406109102168165044, guid: 9bea52544c94d984db3b280c41c9d65f,
     type: 3}
   muzzle: {fileID: 6194330859804084942, guid: 944c719534a08e34fb799bb419dac877, type: 3}
   weaponComponents:

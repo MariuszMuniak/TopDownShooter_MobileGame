@@ -13,12 +13,14 @@ namespace TDS_MG.Control
         EnemyMover mover;
         EnemyFighter fighter;
         Transform player;
+        PlayerController playerController;
 
         private void Awake()
         {
             mover = GetComponent<EnemyMover>();
             fighter = GetComponent<EnemyFighter>();
             player = GameObject.FindWithTag("Player").transform;
+            playerController = player.gameObject.GetComponent<PlayerController>();
         }
 
         private void Start()
@@ -29,6 +31,8 @@ namespace TDS_MG.Control
 
         private void Update()
         {
+            if (playerController.IsDead) { return; }
+
             mover.MoveTo(player.position);
             fighter.Attack();
         }

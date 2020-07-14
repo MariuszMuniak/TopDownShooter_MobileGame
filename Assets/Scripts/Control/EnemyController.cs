@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.Character;
 using TDS_MG.Movement;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ namespace TDS_MG.Control
         {
             mover = GetComponent<EnemyMover>();
             player = GameObject.FindWithTag("Player").transform;
+        }
+
+        private void Start()
+        {
+            GetComponent<ZombieSkin>().SetRandomSkin();
         }
 
         private void Update()

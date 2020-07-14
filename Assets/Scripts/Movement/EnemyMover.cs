@@ -26,6 +26,11 @@ namespace TDS_MG.Movement
             agent.SetDestination(position);
         }
 
+        public void StopAgent()
+        {
+            agent.isStopped = true;
+        }
+
         private void UpdateAnimator()
         {
             float speed = agent.velocity.magnitude;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.Attributes;
 using TDS_MG.Character;
 using TDS_MG.Combat;
 using TDS_MG.Movement;
@@ -23,12 +24,22 @@ namespace TDS_MG.Control
         private void Start()
         {
             GetComponent<ZombieSkin>().SetRandomSkin();
+            SetUpDeathEvent();
         }
 
         private void Update()
         {
             mover.MoveTo(player.position);
             fighter.Attack();
+        }
+
+        private void SetUpDeathEvent()
+        {
+            Health health = GetComponent<Health>();
+
+            health.OnDeath.AddListener(() => GetComponent<CapsuleCollider>().enabled = false);
+            health.OnDeath.AddListener(() => mover.StopAgent());
+            health.OnDeath.AddListener(() => fighter.enabled = false);
         }
     }
 }

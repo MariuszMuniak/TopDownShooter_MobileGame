@@ -7,8 +7,8 @@ namespace TDS_MG.Combat
 {
     public class WeaponCollection : MonoBehaviour
     {
-        [SerializeField] Weapon[] weapons;
-        [SerializeField] WeaponIcon[] weaponIcons;
+        [SerializeField] Weapon[] weapons = new Weapon[1];
+        [SerializeField] WeaponIcon[] weaponIcons = new WeaponIcon[1];
 
         List<Weapon> collection = new List<Weapon>();
 

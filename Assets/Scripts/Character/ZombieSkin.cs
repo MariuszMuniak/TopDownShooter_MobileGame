@@ -6,7 +6,7 @@ namespace TDS_MG.Character
 {
     public class ZombieSkin : MonoBehaviour
     {
-        [SerializeField] SkinnedMeshRenderer[] skins;
+        [SerializeField] SkinnedMeshRenderer[] skins = new SkinnedMeshRenderer[1];
 
         public void SetRandomSkin()
         {

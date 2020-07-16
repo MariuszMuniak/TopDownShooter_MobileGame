@@ -3096,6 +3096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 387986076316854044}
   - component: {fileID: 387986076309785266}
+  - component: {fileID: 7862103183488496160}
   m_Layer: 0
   m_Name: SA_Character_MaleSurvivorHunter
   m_TagString: Untagged
@@ -3187,6 +3188,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7862103183488496160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387986076317117586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61a45513d7b8cd408e2602fa174802a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &387986076317118218
 GameObject:
   m_ObjectHideFlags: 0

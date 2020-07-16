@@ -8,27 +8,35 @@ namespace TDS_MG.Combat
     {
         [SerializeField] WeaponType weaponType = WeaponType.NoWeapon;
         [SerializeField] int damage = 10;
+        [SerializeField] int magazineSize = 30;
         [SerializeField] float timeBetweenAttack = 0.5f;
         [SerializeField] float range = 10f;
         [SerializeField] float radius = 0.5f;
         [SerializeField] float projectileSpeed = 10f;
-        [SerializeField] Transform handle = null;
         [SerializeField] GameObject projectile = null;
         [SerializeField] GameObject muzzle = null;
         [SerializeField] WeaponComponents weaponComponents = new WeaponComponents();
         [Space]
         [SerializeField] Mesh gizmoMesh = null;
 
+        int ammoInMagazine = 0;
         float timeSinceLastAttack = Mathf.Infinity;
+
+        private void Start()
+        {
+            ammoInMagazine = magazineSize;
+        }
 
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
         }
 
-        public float GetRange() => range;
+        public int GetAmmoInMagazine() => ammoInMagazine;
 
-        public Transform GetHandle() => handle;
+        public int GetMagazineSize() => magazineSize;
+
+        public float GetRange() => range;
 
         public WeaponType GetWeaponType() => weaponType;
 
@@ -41,7 +49,7 @@ namespace TDS_MG.Combat
                 hitEnemy = hit.collider.gameObject.CompareTag("Enemy");
             }
 
-            return timeSinceLastAttack >= timeBetweenAttack && hitEnemy;
+            return !MagazineIsEmpty() && timeSinceLastAttack >= timeBetweenAttack && hitEnemy;
         }
 
         public void Fire()
@@ -64,7 +72,19 @@ namespace TDS_MG.Combat
             instantiatedProjectil.transform.LookAt(point);
             instantiatedProjectil.GetComponent<Projectile>().SetUp(damage, projectileSpeed, GetMaxLifetime());
 
+            ReduceAmmoInzMagazine();
+
             timeSinceLastAttack = 0f;
+        }
+
+        public bool MagazineIsEmpty()
+        {
+            return ammoInMagazine <= 0;
+        }
+
+        public void RestoreAmmo()
+        {
+            ammoInMagazine = magazineSize;
         }
 
         private float GetMaxLifetime()
@@ -72,6 +92,11 @@ namespace TDS_MG.Combat
             float lifetime = range / projectileSpeed;
 
             return lifetime;
+        }
+
+        private void ReduceAmmoInzMagazine()
+        {
+            ammoInMagazine = Mathf.Max(ammoInMagazine - 1, 0);
         }
 
         private void OnDrawGizmos()

@@ -14,6 +14,7 @@ namespace TDS_MG.Combat
         WeaponCollection weaponCollection;
         Transform characterModel;
         Weapon currentWeapon;
+        bool isReloading = false;
 
         private void Awake()
         {
@@ -30,8 +31,17 @@ namespace TDS_MG.Combat
         private void Update()
         {
             UpdateAnimator();
-            FaceWeaponPointForward();
-            Fire();
+
+            if (!isReloading)
+            {
+                FaceWeaponPointForward();
+                Fire();
+            }
+
+            if (currentWeapon != null && currentWeapon.MagazineIsEmpty())
+            {
+                Reload();
+            }
         }
 
         public Sprite NextWeapon()
@@ -50,9 +60,43 @@ namespace TDS_MG.Combat
             return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
         }
 
+        public int CurrentAmmoInMagazine()
+        {
+            if (currentWeapon == null) { return 0; }
+
+            return currentWeapon.GetAmmoInMagazine();
+        }
+
+        public int MagazineSize()
+        {
+            if (currentWeapon == null) { return 0; }
+
+            return currentWeapon.GetMagazineSize();
+        }
+
+        public void Reload()
+        {
+            if (currentWeapon == null || isReloading) { return; }
+
+            isReloading = true;
+        }
+
+        public void FinishReloading()
+        {
+            isReloading = false;
+        }
+
+        public void RestoreAmmo()
+        {
+            if (currentWeapon == null) { return; }
+
+            currentWeapon.RestoreAmmo();
+        }
+
         private void UpdateAnimator()
         {
             animator.SetInteger("WeaponType_int", (int)weaponType);
+            animator.SetBool("Reload_b", isReloading);
 
             float bodyHorizontal;
             float bodyVertical;
@@ -135,6 +179,7 @@ namespace TDS_MG.Combat
 
         private void AttachWeapon(Weapon weapon)
         {
+            FinishReloading();
             weaponCollection.HideAllWeapons();
 
             currentWeapon = weaponCollection.ShowWeapon(weapon);
@@ -144,7 +189,7 @@ namespace TDS_MG.Combat
             currentWeapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
             currentWeapon.gameObject.transform.localScale = Vector3.one;
 
-            this.weaponType = currentWeapon.GetWeaponType();
+            weaponType = currentWeapon.GetWeaponType();
         }
     }
 }

@@ -40,8 +40,17 @@ namespace TDS_MG.Attributes
 
         private void Die()
         {
+            int deathType;
             isDead = true;
-            int deathType = Random.Range(1, 3);
+
+            if (gameObject.CompareTag("Player"))
+            {
+                deathType = Random.Range(1, 3);
+            }
+            else
+            {
+                deathType = Random.Range(1, 5);
+            }
 
             Animator animator = GetComponentInChildren<Animator>();
             animator.SetBool("Death_b", isDead);

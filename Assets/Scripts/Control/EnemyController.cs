@@ -5,6 +5,7 @@ using TDS_MG.Character;
 using TDS_MG.Combat;
 using TDS_MG.Movement;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace TDS_MG.Control
 {
@@ -14,6 +15,7 @@ namespace TDS_MG.Control
         EnemyFighter fighter;
         Transform player;
         PlayerController playerController;
+        Health health;
 
         private void Awake()
         {
@@ -21,17 +23,19 @@ namespace TDS_MG.Control
             fighter = GetComponent<EnemyFighter>();
             player = GameObject.FindWithTag("Player").transform;
             playerController = player.gameObject.GetComponent<PlayerController>();
+            health = GetComponent<Health>();
         }
 
         private void Start()
         {
             GetComponent<ZombieSkin>().SetRandomSkin();
             SetUpDeathEvent();
+            SetUpAnimator();
         }
 
         private void Update()
         {
-            if (playerController.IsDead) { return; }
+            if (health.IsDead || playerController.IsDead) { return; }
 
             mover.MoveTo(player.position);
             fighter.Attack();
@@ -41,9 +45,17 @@ namespace TDS_MG.Control
         {
             Health health = GetComponent<Health>();
 
-            health.OnDeath.AddListener(() => GetComponent<CapsuleCollider>().enabled = false);
             health.OnDeath.AddListener(() => mover.StopAgent());
             health.OnDeath.AddListener(() => fighter.enabled = false);
+            health.OnDeath.AddListener(() => GetComponent<CapsuleCollider>().enabled = false);
+            health.OnDeath.AddListener(() => GetComponent<NavMeshAgent>().enabled = false);
+        }
+
+        private void SetUpAnimator()
+        {
+            Animator animator = GetComponentInChildren<Animator>();
+            animator.SetFloat("CycleOffset", Random.Range(0, 0.1f));
+            animator.SetFloat("Locomotion_m", Random.Range(0.85f, 1.15f));
         }
     }
 }

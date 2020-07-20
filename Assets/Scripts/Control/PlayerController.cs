@@ -16,7 +16,6 @@ namespace TDS_MG.Control
             get { return isDead; }
         }
 
-
         void Start()
         {
             SetUpDeathEvent();

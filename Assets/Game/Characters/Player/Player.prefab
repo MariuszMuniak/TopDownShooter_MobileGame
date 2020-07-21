@@ -3179,7 +3179,7 @@ Animator:
   m_GameObject: {fileID: 387986076317117586}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: dbbc53a6bc8f5c64bb234194ce1380aa, type: 3}
-  m_Controller: {fileID: 9100000, guid: afec2cc25e3439e4bb1b43e7c09f6503, type: 2}
+  m_Controller: {fileID: 9100000, guid: b767c40876583da479bbb3c79dd99a36, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6135,6 +6135,7 @@ GameObject:
   - component: {fileID: 8978039269739413938}
   - component: {fileID: 8978039269739413939}
   - component: {fileID: 8978039269739413936}
+  - component: {fileID: 1523817709}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6256,3 +6257,23 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e54584709646e45f887dc9e1d639e76f, type: 3}
   - weaponType: 2
     icon: {fileID: 21300000, guid: 8a08a60017f004fec9cbcde3fda25df7, type: 3}
+--- !u!114 &1523817709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf00de2a598b174586c01e46ee4b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inMainMenu:
+    avatarScale: 1
+    animatorController: {fileID: 9100000, guid: 6a2817c07bee5e741b3e86fc889ce3a9,
+      type: 2}
+  inPlayMode:
+    avatarScale: 0.65
+    animatorController: {fileID: 9100000, guid: b767c40876583da479bbb3c79dd99a36,
+      type: 2}

@@ -9,6 +9,9 @@ namespace TDS_MG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        PlayerMover mover;
+        PlayerFighter fighter;
+
         private bool isDead;
 
         public bool IsDead
@@ -16,17 +19,34 @@ namespace TDS_MG.Control
             get { return isDead; }
         }
 
-        void Start()
+        private void Awake()
+        {
+            mover = GetComponent<PlayerMover>();
+            fighter = GetComponent<PlayerFighter>();
+        }
+
+        private void Start()
         {
             SetUpDeathEvent();
+        }
+
+        public void ActivateBehaviours()
+        {
+            mover.enabled = true;
+            fighter.enabled = true;
+        }
+
+        public void DisableBehaviours()
+        {
+            mover.enabled = false;
+            fighter.enabled = false;
         }
 
         private void SetUpDeathEvent()
         {
             Health health = GetComponent<Health>();
 
-            health.OnDeath.AddListener(() => GetComponent<PlayerMover>().enabled = false);
-            health.OnDeath.AddListener(() => GetComponent<PlayerFighter>().enabled = false);
+            health.OnDeath.AddListener(() => DisableBehaviours());
             health.OnDeath.AddListener(() => GetComponent<CharacterController>().enabled = false);
             health.OnDeath.AddListener(() => isDead = true);
         }

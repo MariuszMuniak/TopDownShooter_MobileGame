@@ -7,8 +7,7 @@ namespace TDS_MG.Combat
 {
     public class WeaponCollection : MonoBehaviour
     {
-        [SerializeField] Weapon[] weapons = new Weapon[1];
-        [SerializeField] WeaponIcon[] weaponIcons = new WeaponIcon[1];
+        [SerializeField] CollectedWeapon[] collectedWeapons = new CollectedWeapon[0];
 
         List<Weapon> collection = new List<Weapon>();
 
@@ -35,11 +34,13 @@ namespace TDS_MG.Combat
 
         public Sprite GetWeaponIcon(WeaponType weaponType)
         {
-            foreach (WeaponIcon weaponIcon in weaponIcons)
+            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
             {
-                if (weaponType == weaponIcon.weaponType)
+                if (collectedWeapon.weapon == null || collectedWeapon.icon == null) { continue; }
+
+                if (collectedWeapon.weapon.GetWeaponType() == weaponType)
                 {
-                    return weaponIcon.icon;
+                    return collectedWeapon.icon;
                 }
             }
 
@@ -71,6 +72,21 @@ namespace TDS_MG.Combat
             return weapon;
         }
 
+        public bool IsOwnedWeapon(WeaponType weaponType)
+        {
+            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
+            {
+                if (collectedWeapon.weapon == null) { return false; }
+
+                if (collectedWeapon.weapon.GetWeaponType() == weaponType)
+                {
+                    return collectedWeapon.isOwned;
+                }
+            }
+
+            return false;
+        }
+
         public Weapon ShowDefaultWeapon()
         {
             Weapon weapon = GetWeapon(WeaponType.Pistol);
@@ -80,9 +96,11 @@ namespace TDS_MG.Combat
 
         private void InstantiateAllWeapons()
         {
-            foreach (Weapon weapon in weapons)
+            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
             {
-                Weapon instantiatedWeapon = Instantiate(weapon, transform);
+                if (collectedWeapon.weapon == null) { continue; }
+
+                Weapon instantiatedWeapon = Instantiate(collectedWeapon.weapon, transform);
 
                 instantiatedWeapon.gameObject.transform.position = Vector3.zero;
                 instantiatedWeapon.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -123,6 +141,14 @@ namespace TDS_MG.Combat
             {
                 weaponIndex = collection.Count - 1;
             }
+        }
+
+        [System.Serializable]
+        private class CollectedWeapon
+        {
+            public bool isOwned = false;
+            public Weapon weapon = null;
+            public Sprite icon = null;
         }
     }
 }

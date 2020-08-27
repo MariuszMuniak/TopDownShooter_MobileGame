@@ -6136,6 +6136,7 @@ GameObject:
   - component: {fileID: 8978039269739413939}
   - component: {fileID: 8978039269739413936}
   - component: {fileID: 1523817709}
+  - component: {fileID: 1329024086}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6247,16 +6248,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4deff40c0aeaa54a93d9a60152ed21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 7824788272729863714, guid: 62cdeec0dbde53a43b5bac1c724bc2b6, type: 3}
-  - {fileID: 4395250887839040296, guid: 620e7c1155f54b640a3a62b9f4baf6c4, type: 3}
-  weaponIcons:
-  - weaponType: 0
-    icon: {fileID: 0}
-  - weaponType: 1
+  collectedWeapons:
+  - isOwned: 1
+    weapon: {fileID: 7824788272729863714, guid: 62cdeec0dbde53a43b5bac1c724bc2b6,
+      type: 3}
     icon: {fileID: 21300000, guid: e54584709646e45f887dc9e1d639e76f, type: 3}
-  - weaponType: 2
+  - isOwned: 0
+    weapon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 866e9f49ae0bc43c7a4f76c7ad242c1e, type: 3}
+  - isOwned: 0
+    weapon: {fileID: 0}
+    icon: {fileID: 21300000, guid: b99ccc8fe738646758fe4e40193416fd, type: 3}
+  - isOwned: 0
+    weapon: {fileID: 0}
+    icon: {fileID: 21300000, guid: e8062a492e27c4d7fba3444c94f1eaee, type: 3}
+  - isOwned: 0
+    weapon: {fileID: 0}
+    icon: {fileID: 21300000, guid: b45b7fefa42c442c1b31e06a552269ef, type: 3}
+  - isOwned: 0
+    weapon: {fileID: 4395250887839040296, guid: 620e7c1155f54b640a3a62b9f4baf6c4,
+      type: 3}
     icon: {fileID: 21300000, guid: 8a08a60017f004fec9cbcde3fda25df7, type: 3}
+  - isOwned: 0
+    weapon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 3541de05ec2e14cc98a3dc54a1677198, type: 3}
+  - isOwned: 0
+    weapon: {fileID: 0}
+    icon: {fileID: 21300000, guid: a863c9b61917f4f90b6763404c9ce5a6, type: 3}
 --- !u!114 &1523817709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6277,3 +6295,30 @@ MonoBehaviour:
     avatarScale: 0.65
     animatorController: {fileID: 9100000, guid: b767c40876583da479bbb3c79dd99a36,
       type: 2}
+--- !u!114 &1329024086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b602a396b301944806490b45d84b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeBetweenState: 15
+  maxTimeBetweenState: 35
+  idleStates:
+  - stateIndex: 0
+    isSingleShot: 1
+    playTime: 0
+  - stateIndex: 1
+    isSingleShot: 0
+    playTime: 12
+  - stateIndex: 2
+    isSingleShot: 0
+    playTime: 12
+  - stateIndex: 3
+    isSingleShot: 1
+    playTime: 0

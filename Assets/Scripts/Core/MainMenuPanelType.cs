@@ -5,5 +5,5 @@
         MainPanel,
         CharacterPanel,
         ShopPanel
-    } 
+    }
 }

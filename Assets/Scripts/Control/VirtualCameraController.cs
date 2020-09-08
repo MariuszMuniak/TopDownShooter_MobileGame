@@ -15,6 +15,7 @@ namespace TDS_MG.Control
             virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
             player = GameObject.FindWithTag("Player").transform;
         }
+
         private void Start()
         {
             if (virtualCamera != null && player != null)

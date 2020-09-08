@@ -13,17 +13,18 @@ namespace TDS_MG.Control
     {
         EnemyMover mover;
         EnemyFighter fighter;
+        Health health;
         Transform player;
         PlayerController playerController;
-        Health health;
+
 
         private void Awake()
         {
             mover = GetComponent<EnemyMover>();
             fighter = GetComponent<EnemyFighter>();
+            health = GetComponent<Health>();
             player = GameObject.FindWithTag("Player").transform;
             playerController = player.gameObject.GetComponent<PlayerController>();
-            health = GetComponent<Health>();
         }
 
         private void Start()
@@ -35,7 +36,10 @@ namespace TDS_MG.Control
 
         private void Update()
         {
-            if (health.IsDead || playerController.IsDead) { return; }
+            if (health.IsDead() || playerController.IsDead)
+            {
+                return;
+            }
 
             mover.MoveTo(player.position);
             fighter.Attack();

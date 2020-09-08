@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TDS_MG.UI;
+using TDS_MG.Attributes;
 using UnityEngine;
 
 namespace TDS_MG.Combat
@@ -16,27 +16,41 @@ namespace TDS_MG.Combat
         private void Awake()
         {
             InstantiateAllWeapons();
+            ResetWeaponTransformInCollecrion();
             HideAllWeapons();
         }
 
-        public void HideAllWeapons()
+        private void InstantiateAllWeapons()
         {
-            foreach (Weapon weapon in collection)
+            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
             {
-                weapon.gameObject.SetActive(false);
+                if (collectedWeapon.weapon == null) { continue; }
 
-                weapon.gameObject.transform.parent = transform;
-                weapon.gameObject.transform.localPosition = Vector3.zero;
-                weapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                weapon.gameObject.transform.localScale = Vector3.one;
+                Weapon instantiatedWeapon = Instantiate(collectedWeapon.weapon, transform);
+                collection.Add(instantiatedWeapon);
             }
         }
+
+        private void ResetWeaponTransformInCollecrion()
+        {
+            collection.ForEach(weapon =>
+            {
+                weapon.transform.position = Vector3.zero;
+                weapon.transform.rotation = Quaternion.Euler(Vector3.zero);
+                weapon.transform.localScale = Vector3.one;
+            });
+        }
+
+        public void HideAllWeapons() => collection.ForEach(weapon => weapon.gameObject.SetActive(false));
 
         public Sprite GetWeaponIcon(WeaponType weaponType)
         {
             foreach (CollectedWeapon collectedWeapon in collectedWeapons)
             {
-                if (collectedWeapon.weapon == null || collectedWeapon.icon == null) { continue; }
+                if (collectedWeapon.weapon == null || collectedWeapon.icon == null)
+                {
+                    continue;
+                }
 
                 if (collectedWeapon.weapon.GetWeaponType() == weaponType)
                 {
@@ -47,36 +61,67 @@ namespace TDS_MG.Combat
             return null;
         }
 
-        public Weapon NextWeapon()
+        public Weapon ShowDefaultWeapon()
         {
-            NextWeaponIndex();
-
-            Weapon weapon = collection[weaponIndex];
-
-            return ShowWeapon(weapon);
-        }
-
-        public Weapon PreviousWeapon()
-        {
-            PreviousWeaponIndex();
-
-            Weapon weapon = collection[weaponIndex];
-
-            return ShowWeapon(weapon);
-        }
-
-        public Weapon ShowWeapon(Weapon weapon)
-        {
-            weapon.gameObject.SetActive(true);
+            Weapon weapon = GetWeapon(WeaponType.Pistol);
+            ShowWeapon(weapon);
 
             return weapon;
+        }
+
+        public void ShowWeapon(Weapon weapon)
+        {
+            weapon.gameObject.SetActive(true);
+        }
+
+        public Weapon ShowNextWeapon()
+        {
+            Weapon weapon = collection[NextWeaponIndex()];
+            ShowWeapon(weapon);
+
+            return weapon;
+        }
+
+        private int NextWeaponIndex()
+        {
+            weaponIndex++;
+
+            if (weaponIndex >= collection.Count)
+            {
+                weaponIndex = 0;
+            }
+
+            return weaponIndex;
+        }
+
+        public Weapon ShowPreviousWeapon()
+        {
+            Weapon weapon = collection[PreviousWeaponIndex()];
+            ShowWeapon(weapon);
+
+            return weapon;
+        }
+
+        private int PreviousWeaponIndex()
+        {
+            weaponIndex--;
+
+            if (weaponIndex < 0)
+            {
+                weaponIndex = collection.Count - 1;
+            }
+
+            return weaponIndex;
         }
 
         public bool IsOwnedWeapon(WeaponType weaponType)
         {
             foreach (CollectedWeapon collectedWeapon in collectedWeapons)
             {
-                if (collectedWeapon.weapon == null) { return false; }
+                if (collectedWeapon.weapon == null)
+                {
+                    continue;
+                }
 
                 if (collectedWeapon.weapon.GetWeaponType() == weaponType)
                 {
@@ -85,29 +130,6 @@ namespace TDS_MG.Combat
             }
 
             return false;
-        }
-
-        public Weapon ShowDefaultWeapon()
-        {
-            Weapon weapon = GetWeapon(WeaponType.Pistol);
-
-            return ShowWeapon(weapon);
-        }
-
-        private void InstantiateAllWeapons()
-        {
-            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
-            {
-                if (collectedWeapon.weapon == null) { continue; }
-
-                Weapon instantiatedWeapon = Instantiate(collectedWeapon.weapon, transform);
-
-                instantiatedWeapon.gameObject.transform.position = Vector3.zero;
-                instantiatedWeapon.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
-                instantiatedWeapon.gameObject.transform.localScale = Vector3.one;
-
-                collection.Add(instantiatedWeapon);
-            }
         }
 
         private Weapon GetWeapon(WeaponType weaponType)
@@ -120,27 +142,7 @@ namespace TDS_MG.Combat
                 }
             }
 
-            return null;
-        }
-
-        private void NextWeaponIndex()
-        {
-            weaponIndex++;
-
-            if (weaponIndex >= collection.Count)
-            {
-                weaponIndex = 0;
-            }
-        }
-
-        private void PreviousWeaponIndex()
-        {
-            weaponIndex--;
-
-            if (weaponIndex < 0)
-            {
-                weaponIndex = collection.Count - 1;
-            }
+            return new Weapon();
         }
 
         [System.Serializable]
@@ -149,6 +151,7 @@ namespace TDS_MG.Combat
             public bool isOwned = false;
             public Weapon weapon = null;
             public Sprite icon = null;
+            public WeaponStats weaponStats = new WeaponStats();
         }
     }
 }

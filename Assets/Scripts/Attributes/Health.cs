@@ -8,55 +8,55 @@ namespace TDS_MG.Attributes
     public class Health : MonoBehaviour
     {
         [SerializeField] int maxHealth = 100;
-        [SerializeField] int currentHealth = 0;
 
+        [HideInInspector] public int MaxHealth { get { return maxHealth; } }
+        [HideInInspector] public int CurrentHealth { get; private set; }
         [HideInInspector] public UnityEvent OnDeath;
-
-        public int MaxHealth { get { return maxHealth; } }
-        public int CurrentHealth { get { return currentHealth; } }
-        public bool IsDead { get { return isDead; } }
 
         bool isDead = false;
 
         void Start()
         {
-            currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
+        }
+
+        public void RestoreHealth(int amount)
+        {
+            CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
         }
 
         public void TakeDamage(int damage)
         {
-            currentHealth = Mathf.Max(currentHealth - damage, 0);
+            CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
 
-            if (currentHealth == 0 && !isDead)
+            if (CurrentHealth == 0 && !isDead)
             {
                 Die();
             }
         }
 
-        public void RestoreHealth(int amount)
-        {
-            currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        }
-
         private void Die()
         {
-            int deathType;
             isDead = true;
+            UpdateAnimatorParameters(RandomDeathTypeIndex());
+            OnDeath.Invoke();
+        }
 
-            if (gameObject.CompareTag("Player"))
-            {
-                deathType = Random.Range(1, 3);
-            }
-            else
-            {
-                deathType = Random.Range(1, 5);
-            }
+        private int RandomDeathTypeIndex()
+        {
+            return gameObject.CompareTag("Player") ? Random.Range(1, 3) : Random.Range(1, 5);
+        }
 
+        private void UpdateAnimatorParameters(int deathTypeIndex)
+        {
             Animator animator = GetComponentInChildren<Animator>();
             animator.SetBool("Death_b", isDead);
-            animator.SetInteger("DeathType_int", deathType);
-
-            OnDeath.Invoke();
+            animator.SetInteger("DeathType_int", deathTypeIndex);
         }
     }
 }

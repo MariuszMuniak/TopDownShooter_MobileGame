@@ -12,7 +12,6 @@ namespace TDS_MG.Combat
         public GameObject Acog
         {
             get { return acog; }
-            set { acog = value; }
         }
 
         [SerializeField] private GameObject flashlight;
@@ -20,7 +19,6 @@ namespace TDS_MG.Combat
         public GameObject Flashlight
         {
             get { return flashlight; }
-            set { flashlight = value; }
         }
 
         [SerializeField] private GameObject laser;
@@ -28,7 +26,6 @@ namespace TDS_MG.Combat
         public GameObject Laser
         {
             get { return laser; }
-            set { laser = value; }
         }
 
         [SerializeField] private GameObject reddot;
@@ -36,7 +33,6 @@ namespace TDS_MG.Combat
         public GameObject Reddot
         {
             get { return reddot; }
-            set { reddot = value; }
         }
 
         [SerializeField] private GameObject silencer;
@@ -44,7 +40,6 @@ namespace TDS_MG.Combat
         public GameObject Silencer
         {
             get { return silencer; }
-            set { silencer = value; }
         }
 
         [SerializeField] private Transform barrel;
@@ -52,7 +47,6 @@ namespace TDS_MG.Combat
         public Transform Barrel
         {
             get { return barrel; }
-            set { barrel = value; }
         }
     }
 }

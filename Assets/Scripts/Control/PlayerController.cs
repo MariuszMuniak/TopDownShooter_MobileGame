@@ -30,6 +30,15 @@ namespace TDS_MG.Control
             SetUpDeathEvent();
         }
 
+        private void SetUpDeathEvent()
+        {
+            Health health = GetComponent<Health>();
+
+            health.OnDeath.AddListener(() => DisableBehaviours());
+            health.OnDeath.AddListener(() => GetComponent<CharacterController>().enabled = false);
+            health.OnDeath.AddListener(() => isDead = true);
+        }
+
         public void ActivateBehaviours()
         {
             mover.enabled = true;
@@ -40,15 +49,6 @@ namespace TDS_MG.Control
         {
             mover.enabled = false;
             fighter.enabled = false;
-        }
-
-        private void SetUpDeathEvent()
-        {
-            Health health = GetComponent<Health>();
-
-            health.OnDeath.AddListener(() => DisableBehaviours());
-            health.OnDeath.AddListener(() => GetComponent<CharacterController>().enabled = false);
-            health.OnDeath.AddListener(() => isDead = true);
         }
     }
 }

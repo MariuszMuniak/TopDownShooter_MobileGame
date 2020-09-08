@@ -19,17 +19,19 @@ namespace TDS_MG.Core
         {
             int index = (int)panelType;
 
-            if (index >= panels.Length) { return; }
+            if (index < panels.Length)
+            {
+                openedPanel = panels[index];
+                openedPanel.SetActive(true);
+            }
+        }
 
+        public void CloseOpenedPanel()
+        {
             if (openedPanel != null)
             {
                 openedPanel.SetActive(false);
             }
-
-            GameObject panel = panels[index];
-            panel.SetActive(true);
-
-            openedPanel = panel;
         }
     }
 }

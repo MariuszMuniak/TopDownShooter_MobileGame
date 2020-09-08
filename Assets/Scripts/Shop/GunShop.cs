@@ -11,6 +11,8 @@ namespace TDS_MG.Shop
         [SerializeField] GameObject upgradeWeaponPanel = null;
         [SerializeField] Button buyButton = null;
         [SerializeField] float selectedIconScale = 1.1f;
+        [SerializeField] Color ownedGunShopItemButtonImageColor = Color.white;
+        [SerializeField] Color notOwnedGunShopItemButtonImageColor = Color.white;
         [Space]
         [SerializeField] GunShopItem[] gunShopItems = new GunShopItem[0];
 
@@ -24,53 +26,37 @@ namespace TDS_MG.Shop
 
         private void Start()
         {
-            RefreshWeaponIcon();
-            HideSubItemPanels();
+            RefreshGunShopItemsConfiguration();
+            HideGunShopItemPanels();
         }
 
-        public void SelectWeapon(Image icon, WeaponType weaponType)
-        {
-            HideSubItemPanels();
-
-            if (selectedIcon != null)
-            {
-                RescaleImage(selectedIcon, 1f);
-            }
-
-            selectedIcon = icon;
-
-            RescaleImage(icon, selectedIconScale);
-
-            GunShopItem item = GetGunShopItem(weaponType);
-
-            if (item != null && item.isOwned)
-            {
-                upgradeWeaponPanel.SetActive(true);
-            }
-            else
-            {
-                buyButton.gameObject.SetActive(true);
-            }
-        }
-
-        private void RefreshWeaponIcon()
+        private void RefreshGunShopItemsConfiguration()
         {
             foreach (GunShopItem gunShopItem in gunShopItems)
             {
                 gunShopItem.isOwned = weaponCollection.IsOwnedWeapon(gunShopItem.weaponType);
-
-                if (gunShopItem.isOwned)
-                {
-                    gunShopItem.button.image.color = Color.white;
-                }
-                else
-                {
-                    Color color = Color.white;
-                    color.a = 0.6f;
-
-                    gunShopItem.button.image.color = color;
-                }
+                RefreshGunShopItemsIcon(gunShopItem);
             }
+        }
+
+        private void RefreshGunShopItemsIcon(GunShopItem item)
+        {
+            item.GetImageFromButton().color = item.isOwned ? ownedGunShopItemButtonImageColor : notOwnedGunShopItemButtonImageColor;
+        }
+
+        private void HideGunShopItemPanels()
+        {
+            upgradeWeaponPanel.SetActive(false);
+            buyButton.gameObject.SetActive(false);
+        }
+
+        public void SelectWeapon(WeaponType weaponType)
+        {
+            GunShopItem selectedItem = GetGunShopItem(weaponType);
+
+            RescaleGunShopItemImage(selectedItem);
+            HideGunShopItemPanels();
+            ShowGunShopItemPanel(selectedItem);
         }
 
         private GunShopItem GetGunShopItem(WeaponType weaponType)
@@ -86,24 +72,32 @@ namespace TDS_MG.Shop
             return null;
         }
 
-        private void RescaleImage(Image icon, float scale)
+        private void RescaleGunShopItemImage(GunShopItem selectedItem)
         {
-            icon.gameObject.GetComponent<RectTransform>().localScale = Vector3.one * scale;
+            if (selectedIcon != null)
+            {
+                ScaleSelectedIcon(1f);
+            }
+
+            selectedIcon = selectedItem.GetImageFromButton();
+            ScaleSelectedIcon(selectedIconScale);
         }
 
-        private void HideSubItemPanels()
+        private void ScaleSelectedIcon(float scale)
         {
-            upgradeWeaponPanel.SetActive(false);
-            buyButton.gameObject.SetActive(false);
+            selectedIcon.gameObject.GetComponent<RectTransform>().localScale = Vector3.one * scale;
         }
 
-        [System.Serializable]
-        private class GunShopItem
+        private void ShowGunShopItemPanel(GunShopItem item)
         {
-            public bool isOwned = false;
-            public WeaponType weaponType = WeaponType.NoWeapon;
-            public Button button = null;
-            public int price = 0;
+            if (item.isOwned)
+            {
+                upgradeWeaponPanel.SetActive(true);
+            }
+            else
+            {
+                buyButton.gameObject.SetActive(true);
+            }
         }
     }
 }

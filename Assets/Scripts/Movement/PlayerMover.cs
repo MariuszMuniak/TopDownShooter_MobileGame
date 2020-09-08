@@ -15,7 +15,6 @@ namespace TDS_MG.Movement
 
         CharacterController characterController;
         Animator animator;
-        bool isGrounded = false;
 
         private void Awake()
         {
@@ -25,32 +24,31 @@ namespace TDS_MG.Movement
 
         private void Update()
         {
-            isGrounded = characterController.isGrounded;
-
             Move();
-            Rotation();
-            UpdateAnimator();
+            Rotate();
+            UpdateAnimatorParameters();
         }
-
-        public bool IsRunning() => moveJoystick.Direction != Vector2.zero;
-
-        public Transform GetCharacterModel() => characterModel;
 
         private void Move()
         {
-            if (moveJoystick == null) { return; }
+            if (moveJoystick == null)
+            {
+                return;
+            }
 
             Vector3 direction = new Vector3
             {
                 x = moveJoystick.Horizontal,
-                y = isGrounded ? 0f : gravity,
+                y = IsGrounded() ? 0f : gravity,
                 z = moveJoystick.Vertical
             };
 
             characterController.Move(direction * speed * Time.deltaTime);
         }
 
-        private void Rotation()
+        private bool IsGrounded() => characterController.isGrounded;
+
+        private void Rotate()
         {
             if (rotationJoystick == null) { return; }
 
@@ -64,13 +62,10 @@ namespace TDS_MG.Movement
             characterModel.LookAt(direction);
         }
 
-        private void UpdateAnimator()
+        private void UpdateAnimatorParameters()
         {
-            float velocity = characterController.velocity.magnitude;
-            animator.SetBool("Static_b", true);
-            animator.SetFloat("Speed_f", velocity);
-
             bool moveBckward = false;
+            float velocity = characterController.velocity.magnitude;
             int joystickValue = CoordinateSystemQuarter(moveJoystick.Horizontal, moveJoystick.Vertical);
             int characterValue = CoordinateSystemQuarter(characterModel.forward.x, characterModel.forward.z);
 
@@ -91,6 +86,8 @@ namespace TDS_MG.Movement
                 moveBckward = true;
             }
 
+            animator.SetBool("Static_b", true);
+            animator.SetFloat("Speed_f", velocity);
             animator.SetBool("RunBckward_b", moveBckward);
         }
 
@@ -119,5 +116,9 @@ namespace TDS_MG.Movement
                 return 0;
             }
         }
+
+        public bool IsRunning() => moveJoystick.Direction != Vector2.zero;
+
+        public Transform GetCharacterModel() => characterModel;
     }
 }

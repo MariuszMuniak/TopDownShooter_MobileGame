@@ -19,9 +19,32 @@ namespace TDS_MG.Combat
 
         private void OnCollisionEnter(Collision collision)
         {
-            InstantiateHitEffect(collision);
-            EnemyTakeDamage(collision);
+            InstantiateHitEffect(collision.GetContact(0).point);
+            EnemyTakeDamage(collision.gameObject);
             Destroy(gameObject);
+        }
+
+        private void InstantiateHitEffect(Vector3 atPoint)
+        {
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, atPoint, Quaternion.identity);
+            }
+        }
+
+        private void EnemyTakeDamage(GameObject hitenObject)
+        {
+            Health health = null;
+
+            if (hitenObject.CompareTag("Enemy"))
+            {
+                health = hitenObject.gameObject.GetComponentInParent<Health>();
+            }
+
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
         }
 
         public void SetUp(int damage, float speed, float lifetime)
@@ -29,31 +52,6 @@ namespace TDS_MG.Combat
             this.damage = damage;
             this.speed = speed;
             Destroy(gameObject, lifetime);
-        }
-
-        private void InstantiateHitEffect(Collision collision)
-        {
-            ContactPoint contactPoint = collision.GetContact(0);
-
-            if (hitEffect != null)
-            {
-                Instantiate(hitEffect, contactPoint.point, Quaternion.identity);
-            }
-        }
-
-        private void EnemyTakeDamage(Collision collision)
-        {
-            Health health = null;
-
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                health = collision.gameObject.GetComponentInParent<Health>();
-            }
-
-            if (health != null)
-            {
-                health.TakeDamage(damage);
-            }
         }
     }
 }

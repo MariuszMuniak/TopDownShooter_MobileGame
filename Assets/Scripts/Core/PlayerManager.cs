@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TDS_MG.Animations;
 using TDS_MG.Control;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,28 +12,33 @@ namespace TDS_MG.Core
         [SerializeField] PlayerSetUp inMainMenu;
         [SerializeField] PlayerSetUp inPlayMode;
 
-        const string maniMenuSceneName = "MainMenu";
+        const string MAIN_MENU_SCENE_NAME = "MainMenu";
 
         Animator animator;
         PlayerController playerController;
-        PlayerMainMenuAnimator menuAnimator;
+        PlayerMainMenuAnimator mainMenuAnimator;
 
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
             playerController = GetComponent<PlayerController>();
-            menuAnimator = GetComponent<PlayerMainMenuAnimator>();
+            mainMenuAnimator = GetComponent<PlayerMainMenuAnimator>();
         }
 
         private void Start()
         {
+            PlayerConfigurationDependingOnScene();
+        }
+
+        private void PlayerConfigurationDependingOnScene()
+        {
             Scene currentScene = SceneManager.GetActiveScene();
 
-            if (currentScene.name == maniMenuSceneName)
+            if (currentScene.name == MAIN_MENU_SCENE_NAME)
             {
                 SetUpPlayer(inMainMenu);
                 playerController.DisableBehaviours();
-                menuAnimator.enabled = true;
+                mainMenuAnimator.enabled = true;
             }
             else
             {
@@ -57,7 +61,7 @@ namespace TDS_MG.Core
         private class PlayerSetUp
         {
             public float avatarScale = 1f;
-            public AnimatorController animatorController = null;
+            public RuntimeAnimatorController animatorController = null;
         }
     }
 }

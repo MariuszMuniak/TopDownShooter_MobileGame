@@ -12,20 +12,18 @@ namespace TDS_MG.UI
 
         Button button;
         GunShop gunShop;
-        Image icon;
 
         private void Awake()
         {
             button = GetComponent<Button>();
             gunShop = FindObjectOfType<GunShop>();
-            icon = GetComponent<Image>();
         }
 
         private void Start()
         {
             if (gunShop != null)
             {
-                button.onClick.AddListener(() => gunShop.SelectWeapon(icon, weaponType));
+                button.onClick.AddListener(() => gunShop.SelectWeapon(weaponType));
             }
         }
     }

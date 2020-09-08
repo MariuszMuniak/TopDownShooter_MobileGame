@@ -18,7 +18,13 @@ namespace TDS_MG.Movement
 
         private void Update()
         {
-            UpdateAnimator();
+            UpdateAnimatorParameters();
+        }
+
+        private void UpdateAnimatorParameters()
+        {
+            float speed = agent.velocity.magnitude;
+            animator.SetFloat("speed", speed);
         }
 
         public void MoveTo(Vector3 position)
@@ -29,12 +35,6 @@ namespace TDS_MG.Movement
         public void StopAgent()
         {
             agent.isStopped = true;
-        }
-
-        private void UpdateAnimator()
-        {
-            float speed = agent.velocity.magnitude;
-            animator.SetFloat("speed", speed);
         }
     }
 }

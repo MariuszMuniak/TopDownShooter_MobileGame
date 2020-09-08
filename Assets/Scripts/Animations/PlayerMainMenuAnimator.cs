@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using UnityEngine;
 
 namespace TDS_MG.Animations
@@ -13,10 +12,9 @@ namespace TDS_MG.Animations
         [SerializeField] IdleState[] idleStates = new IdleState[0];
 
         Animator animator;
-        bool isPlayingIdleState = false;
-        float timeSinceStartStartPlaying = 0f;
-        float timeToNextIdleStat = 2f;
-        float playTime = 1f;
+        float timeSinceAnimationStartedPlaying = Mathf.Infinity;
+        float timeToNextIdleState;
+        int currentIdleStateIndex;
 
         private void Awake()
         {
@@ -26,57 +24,54 @@ namespace TDS_MG.Animations
         private void Start()
         {
             enabled = false;
-            timeToNextIdleStat = RandomTimeBetweenState();
+            timeToNextIdleState = RandomTimeBetweenState();
         }
 
         private void Update()
         {
             if (CanPlayNextIdleState())
             {
-                PlayRandomIdleState();
+                currentIdleStateIndex = PlayRandomIdleState();
+                SetNewTimeToNextIdleState();
             }
 
-            UpdateAnimator();
-
-            timeSinceStartStartPlaying += Time.deltaTime;
-        }
-
-        private void UpdateAnimator()
-        {
-            isPlayingIdleState = timeSinceStartStartPlaying <= playTime;
-
-            animator.SetBool("PlayIdleStat_b", isPlayingIdleState);
-        }
-
-        private bool CanPlayNextIdleState()
-        {
-            return timeSinceStartStartPlaying >= timeToNextIdleStat;
-        }
-
-        private void PlayRandomIdleState()
-        {
-            int statIndex = Random.Range(0, idleStates.Length);
-
-            animator.SetInteger("StateIndex_i", statIndex);
-
-            IdleState idleState = idleStates[statIndex];
-
-            if (idleState.isSingleShot)
-            {
-                playTime = 0.5f;
-            }
-            else
-            {
-                playTime = idleState.playTime;
-                timeToNextIdleStat = playTime + RandomTimeBetweenState();
-            }
-
-            timeSinceStartStartPlaying = 0f;
+            animator.SetBool("PlayIdleStat_b", IsPlayingIdleStateAnimation());
+            UpdateTimer();
         }
 
         private float RandomTimeBetweenState()
         {
             return Random.Range(minTimeBetweenState, maxTimeBetweenState);
+        }
+
+        private bool CanPlayNextIdleState()
+        {
+            return timeSinceAnimationStartedPlaying >= timeToNextIdleState;
+        }
+
+        private int PlayRandomIdleState()
+        {
+            int stateIndex = Random.Range(0, idleStates.Length);
+
+            animator.SetInteger("StateIndex_i", stateIndex);
+            timeSinceAnimationStartedPlaying = 0f;
+
+            return stateIndex;
+        }
+
+        private void SetNewTimeToNextIdleState()
+        {
+            timeToNextIdleState = idleStates[currentIdleStateIndex].playTime + RandomTimeBetweenState();
+        }
+
+        private bool IsPlayingIdleStateAnimation()
+        {
+            return timeSinceAnimationStartedPlaying <= idleStates[currentIdleStateIndex].playTime;
+        }
+
+        private void UpdateTimer()
+        {
+            timeSinceAnimationStartedPlaying += Time.deltaTime;
         }
 
         [System.Serializable]

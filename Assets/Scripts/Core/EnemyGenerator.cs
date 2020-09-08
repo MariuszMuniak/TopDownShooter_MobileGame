@@ -11,7 +11,6 @@ namespace TDS_MG.Core
         [SerializeField] GameObject zombie = null;
         [SerializeField] Wave[] waves = new Wave[1];
 
-        Wave currentWave = null;
         int waveIndex = 0;
         bool isGenerating = false;
         float timeSinceLastWave = Mathf.Infinity;
@@ -26,7 +25,7 @@ namespace TDS_MG.Core
         {
             if (CanSpawn())
             {
-                SpawnWaves();
+                SpawnZombieWave();
             }
 
             timeSinceLastWave += Time.deltaTime;
@@ -37,31 +36,37 @@ namespace TDS_MG.Core
             isGenerating = true;
         }
 
-        private void StopSpawnWaves()
-        {
-            isGenerating = false;
-        }
-
         private bool CanSpawn()
         {
-            return isGenerating && timeSinceLastWave > timeToNextWave;
+            return isGenerating && timeSinceLastWave >= timeToNextWave;
         }
 
-        private void SpawnWaves()
+        private void SpawnZombieWave()
         {
-            Wave wave = waves[waveIndex];
-            currentWave = wave;
+            Wave currentWave = waves[waveIndex];
+            InstantiateZombiesAtRandomSpawnPoint(currentWave.zombieNumber);
+
+            NextWaveIndex();
+
+            timeToNextWave = currentWave.timeToNextWave;
+            timeSinceLastWave = 0f;
+        }
+
+        private void InstantiateZombiesAtRandomSpawnPoint(int amount)
+        {
             SpawnPoint spawnPoint = RandomSpawnPoint();
 
-            for (int i = 0; i < currentWave.zombieNumber; i++)
+            for (int i = 0; i < amount; i++)
             {
                 Instantiate(zombie, RandomWorldPositionInSpawnArea(spawnPoint), transform.rotation);
             }
+        }
 
-            timeToNextWave = wave.timeToNextWave;
-            timeSinceLastWave = 0f;
+        private SpawnPoint RandomSpawnPoint()
+        {
+            SpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            NextWaveIndex();
+            return spawnPoint;
         }
 
         private Vector3 RandomWorldPositionInSpawnArea(SpawnPoint spawnPoint)
@@ -82,13 +87,6 @@ namespace TDS_MG.Core
             return spawnPoint.center.TransformPoint(position);
         }
 
-        private SpawnPoint RandomSpawnPoint()
-        {
-            SpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-            return spawnPoint;
-        }
-
         private void NextWaveIndex()
         {
             waveIndex++;
@@ -99,11 +97,16 @@ namespace TDS_MG.Core
             }
         }
 
+        private void StopSpawnWaves()
+        {
+            isGenerating = false;
+        }
+
         [System.Serializable]
         private class Wave
         {
-            public int zombieNumber;
-            public float timeToNextWave;
+            public int zombieNumber = 0;
+            public float timeToNextWave = 0f;
         }
 
         [System.Serializable]

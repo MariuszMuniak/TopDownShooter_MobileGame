@@ -23,9 +23,10 @@ namespace TDS_MG.Combat
 
                 if (health != null)
                 {
-                    health.TakeDamage(damage);
-                    boxCollider.enabled = false;
+                    health.TakeDamage(damage); 
                 }
+
+                boxCollider.enabled = false;
             }
         }
 

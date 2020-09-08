@@ -14,7 +14,7 @@ namespace TDS_MG.Combat
         [SerializeField] float radius = 0.5f;
         [SerializeField] float projectileSpeed = 10f;
         [SerializeField] GameObject projectile = null;
-        [SerializeField] GameObject muzzle = null;
+        [SerializeField] GameObject muzzleEffect = null;
         [SerializeField] WeaponComponents weaponComponents = new WeaponComponents();
         [Space]
         [SerializeField] Mesh gizmoMesh = null;
@@ -52,10 +52,36 @@ namespace TDS_MG.Combat
             return !MagazineIsEmpty() && timeSinceLastAttack >= timeBetweenAttack && hitEnemy;
         }
 
+        public bool MagazineIsEmpty()
+        {
+            return ammoInMagazine <= 0;
+        }
+
         public void Fire()
         {
-            Instantiate(muzzle, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation, weaponComponents.Barrel);
+            GameObject instantiatedProjectil = InstantiatedProjectil();
+            SetUpProjectil(instantiatedProjectil);
+            InstantiateMuzzleEffect();
+            ReduceAmmoInzMagazine();
 
+            timeSinceLastAttack = 0f;
+        }
+
+        private GameObject InstantiatedProjectil()
+        {
+            return Instantiate(projectile, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation);
+        }
+
+        private void SetUpProjectil(GameObject instantiatedProjectil)
+        {
+            Vector3 point = instantiatedProjectil.transform.TransformPoint(GetPointFromCircleWithMaxRange());
+            instantiatedProjectil.transform.LookAt(point);
+
+            instantiatedProjectil.GetComponent<Projectile>().SetUp(damage, projectileSpeed, GetMaxLifetime());
+        }
+
+        private Vector3 GetPointFromCircleWithMaxRange()
+        {
             Vector3 localPoint = Vector3.zero;
 
             do
@@ -66,20 +92,26 @@ namespace TDS_MG.Combat
 
             localPoint.z = range;
 
-            GameObject instantiatedProjectil = Instantiate(projectile, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation);
-            Vector3 point = instantiatedProjectil.transform.TransformPoint(localPoint);
-
-            instantiatedProjectil.transform.LookAt(point);
-            instantiatedProjectil.GetComponent<Projectile>().SetUp(damage, projectileSpeed, GetMaxLifetime());
-
-            ReduceAmmoInzMagazine();
-
-            timeSinceLastAttack = 0f;
+            return localPoint;
         }
 
-        public bool MagazineIsEmpty()
+        private float GetMaxLifetime()
         {
-            return ammoInMagazine <= 0;
+            float lifetime = range / projectileSpeed;
+            return lifetime;
+        }
+
+        private void InstantiateMuzzleEffect()
+        {
+            if (muzzleEffect != null)
+            {
+                Instantiate(muzzleEffect, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation, weaponComponents.Barrel);
+            }
+        }
+
+        private void ReduceAmmoInzMagazine()
+        {
+            ammoInMagazine = Mathf.Max(ammoInMagazine - 1, 0);
         }
 
         public void RestoreAmmo()
@@ -87,16 +119,9 @@ namespace TDS_MG.Combat
             ammoInMagazine = magazineSize;
         }
 
-        private float GetMaxLifetime()
+        public void SetTimeBetweenAttack(int fireRate)
         {
-            float lifetime = range / projectileSpeed;
-
-            return lifetime;
-        }
-
-        private void ReduceAmmoInzMagazine()
-        {
-            ammoInMagazine = Mathf.Max(ammoInMagazine - 1, 0);
+            timeBetweenAttack = 1f / fireRate;
         }
 
         private void OnDrawGizmos()

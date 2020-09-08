@@ -20,17 +20,17 @@ namespace TDS_MG.Combat
         {
             animator = GetComponentInChildren<Animator>();
             weaponCollection = GetComponent<WeaponCollection>();
+            characterModel = GetComponent<PlayerMover>().GetCharacterModel();
         }
 
         private void Start()
         {
-            characterModel = GetComponent<PlayerMover>().GetCharacterModel();
             AttachDefaultWeapon();
         }
 
         private void Update()
         {
-            UpdateAnimator();
+            UpdateAnimatorParameters();
 
             if (!isReloading)
             {
@@ -44,41 +44,29 @@ namespace TDS_MG.Combat
             }
         }
 
-        public Sprite NextWeapon()
+        private void AttachDefaultWeapon()
         {
-            Weapon weapon = weaponCollection.NextWeapon();
+            Weapon weapon = weaponCollection.ShowDefaultWeapon();
+
             AttachWeapon(weapon);
-
-            return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
         }
 
-        public Sprite PreviousWeapon()
+        private void AttachWeapon(Weapon weapon)
         {
-            Weapon weapon = weaponCollection.PreviousWeapon();
-            AttachWeapon(weapon);
-
-            return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
+            currentWeapon = weapon;
+            weaponType = currentWeapon.GetWeaponType();
+            weaponCollection.HideAllWeapons();
+            weaponCollection.ShowWeapon(currentWeapon);
+            SetUpCurrentWeaponPosition();
+            FinishReloading();
         }
 
-        public int CurrentAmmoInMagazine()
+        private void SetUpCurrentWeaponPosition()
         {
-            if (currentWeapon == null) { return 0; }
-
-            return currentWeapon.GetAmmoInMagazine();
-        }
-
-        public int MagazineSize()
-        {
-            if (currentWeapon == null) { return 0; }
-
-            return currentWeapon.GetMagazineSize();
-        }
-
-        public void Reload()
-        {
-            if (currentWeapon == null || isReloading) { return; }
-
-            isReloading = true;
+            currentWeapon.transform.parent = weaponPlace;
+            currentWeapon.gameObject.transform.localPosition = Vector3.zero;
+            currentWeapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            currentWeapon.gameObject.transform.localScale = Vector3.one;
         }
 
         public void FinishReloading()
@@ -86,24 +74,13 @@ namespace TDS_MG.Combat
             isReloading = false;
         }
 
-        public void RestoreAmmo()
+        private void UpdateAnimatorParameters()
         {
-            if (currentWeapon == null) { return; }
-
-            currentWeapon.RestoreAmmo();
-        }
-
-        private void UpdateAnimator()
-        {
-            animator.SetInteger("WeaponType_int", (int)weaponType);
-            animator.SetBool("Reload_b", isReloading);
-
+            bool isRunning = GetComponent<PlayerMover>().IsRunning();
             float bodyHorizontal;
             float bodyVertical;
             float headHorizontal = 0f;
             float headVertical = 0f;
-
-            bool isRunning = GetComponent<PlayerMover>().IsRunning();
 
             if (weaponType == WeaponType.NoWeapon)
             {
@@ -139,6 +116,8 @@ namespace TDS_MG.Combat
                 }
             }
 
+            animator.SetInteger("WeaponType_int", (int)weaponType);
+            animator.SetBool("Reload_b", isReloading);
             animator.SetFloat("Body_Horizontal_f", bodyHorizontal);
             animator.SetFloat("Body_Vertical_f", bodyVertical);
             animator.SetFloat("Head_Horizontal_f", headHorizontal);
@@ -170,26 +149,48 @@ namespace TDS_MG.Combat
             }
         }
 
-        private void AttachDefaultWeapon()
+        public void Reload()
         {
-            Weapon weapon = weaponCollection.ShowDefaultWeapon();
+            if (currentWeapon == null || isReloading) { return; }
 
-            AttachWeapon(weapon);
+            isReloading = true;
         }
 
-        private void AttachWeapon(Weapon weapon)
+        public Sprite NextWeapon()
         {
-            FinishReloading();
-            weaponCollection.HideAllWeapons();
+            Weapon weapon = weaponCollection.ShowNextWeapon();
+            AttachWeapon(weapon);
 
-            currentWeapon = weaponCollection.ShowWeapon(weapon);
+            return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
+        }
 
-            currentWeapon.transform.parent = weaponPlace;
-            currentWeapon.gameObject.transform.localPosition = Vector3.zero;
-            currentWeapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            currentWeapon.gameObject.transform.localScale = Vector3.one;
+        public Sprite PreviousWeapon()
+        {
+            Weapon weapon = weaponCollection.ShowPreviousWeapon();
+            AttachWeapon(weapon);
 
-            weaponType = currentWeapon.GetWeaponType();
+            return weaponCollection.GetWeaponIcon(weapon.GetWeaponType());
+        }
+
+        public int CurrentAmmoInMagazine()
+        {
+            if (currentWeapon == null) { return 0; }
+
+            return currentWeapon.GetAmmoInMagazine();
+        }
+
+        public int MagazineSize()
+        {
+            if (currentWeapon == null) { return 0; }
+
+            return currentWeapon.GetMagazineSize();
+        }
+
+        public void RestoreAmmo()
+        {
+            if (currentWeapon == null) { return; }
+
+            currentWeapon.RestoreAmmo();
         }
     }
 }

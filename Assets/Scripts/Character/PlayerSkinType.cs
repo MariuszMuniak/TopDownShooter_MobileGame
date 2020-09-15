@@ -1,0 +1,25 @@
+﻿public enum PlayerSkinType
+{
+    Biohazard,
+    Businessman,
+    Doctor,
+    Farmer,
+    FemaleHero,
+    FemalePyro,
+    FemaleSoldier,
+    FemaleTrenchcoat,
+    Hazard,
+    HoodedMan,
+    InjuredMan,
+    Male_01,
+    Male_02,
+    Male_03,
+    Male_04,
+    MaleHunter,
+    MaleTrenchcoat,
+    OldMan,
+    Prisoner,
+    RoadWorker,
+    Scout,
+    Sheriff
+}

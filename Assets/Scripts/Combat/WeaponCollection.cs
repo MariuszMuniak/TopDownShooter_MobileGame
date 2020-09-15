@@ -43,6 +43,45 @@ namespace TDS_MG.Combat
 
         public void HideAllWeapons() => collection.ForEach(weapon => weapon.gameObject.SetActive(false));
 
+        public WeaponStats GetWeaponStats(WeaponType weaponType)
+        {
+            return GetCollectedWeapon(weaponType).weaponStats;
+        }
+
+        public void SetWeaponStats(WeaponType weaponType, WeaponStats stats)
+        {
+            GetCollectedWeapon(weaponType).weaponStats = stats;
+        }
+
+        public bool IsOwnedWeapon(WeaponType weaponType)
+        {
+            return GetCollectedWeapon(weaponType).isOwned;
+        }
+
+        public void TakePossession(WeaponType weaponType)
+        {
+            CollectedWeapon collectedWeapon = GetCollectedWeapon(weaponType);
+            collectedWeapon.isOwned = true;
+        }
+
+        private CollectedWeapon GetCollectedWeapon(WeaponType weaponType)
+        {
+            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
+            {
+                if (collectedWeapon.weapon == null)
+                {
+                    continue;
+                }
+
+                if (collectedWeapon.weapon.GetWeaponType() == weaponType)
+                {
+                    return collectedWeapon;
+                }
+            }
+
+            return new CollectedWeapon();
+        }
+
         public Sprite GetWeaponIcon(WeaponType weaponType)
         {
             foreach (CollectedWeapon collectedWeapon in collectedWeapons)
@@ -67,6 +106,19 @@ namespace TDS_MG.Combat
             ShowWeapon(weapon);
 
             return weapon;
+        }
+
+        private Weapon GetWeapon(WeaponType weaponType)
+        {
+            foreach (Weapon weapon in collection)
+            {
+                if (weapon.GetWeaponType() == weaponType)
+                {
+                    return weapon;
+                }
+            }
+
+            return new Weapon();
         }
 
         public void ShowWeapon(Weapon weapon)
@@ -112,37 +164,6 @@ namespace TDS_MG.Combat
             }
 
             return weaponIndex;
-        }
-
-        public bool IsOwnedWeapon(WeaponType weaponType)
-        {
-            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
-            {
-                if (collectedWeapon.weapon == null)
-                {
-                    continue;
-                }
-
-                if (collectedWeapon.weapon.GetWeaponType() == weaponType)
-                {
-                    return collectedWeapon.isOwned;
-                }
-            }
-
-            return false;
-        }
-
-        private Weapon GetWeapon(WeaponType weaponType)
-        {
-            foreach (Weapon weapon in collection)
-            {
-                if (weapon.GetWeaponType() == weaponType)
-                {
-                    return weapon;
-                }
-            }
-
-            return new Weapon();
         }
 
         [System.Serializable]

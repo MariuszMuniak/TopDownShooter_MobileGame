@@ -1,0 +1,271 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdb2cbcab1e89a4aa0d581c5dabc538, type: 3}
+  m_Name: WeaponStatsProgression
+  m_EditorClassIdentifier: 
+  weaponStatsProgressionPerUpgrationLevels:
+  - weaponType: 1
+    weaponStatsWithCostPerUpgrades:
+    - price: 100
+      weaponStats:
+        damage: 8
+        fireRate: 4.5
+        reloadSpeed: 2.5
+    - price: 200
+      weaponStats:
+        damage: 12
+        fireRate: 4.75
+        reloadSpeed: 2.45
+    - price: 300
+      weaponStats:
+        damage: 15
+        fireRate: 5.1
+        reloadSpeed: 2.35
+    - price: 400
+      weaponStats:
+        damage: 19
+        fireRate: 5.5
+        reloadSpeed: 2.2
+    - price: 500
+      weaponStats:
+        damage: 23
+        fireRate: 6
+        reloadSpeed: 2
+    - price: 600
+      weaponStats:
+        damage: 30
+        fireRate: 7
+        reloadSpeed: 1.75
+  - weaponType: 2
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+  - weaponType: 3
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+  - weaponType: 4
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+  - weaponType: 5
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+  - weaponType: 6
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+  - weaponType: 7
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+  - weaponType: 9
+    weaponStatsWithCostPerUpgrades:
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0
+    - price: 0
+      weaponStats:
+        damage: 0
+        fireRate: 0
+        reloadSpeed: 0

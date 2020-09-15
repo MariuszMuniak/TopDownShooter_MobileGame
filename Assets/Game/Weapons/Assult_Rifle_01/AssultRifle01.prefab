@@ -635,14 +635,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 2
   damage: 15
+  magazineSize: 30
   timeBetweenAttack: 0.25
   range: 15
   radius: 1
   projectileSpeed: 20
-  handle: {fileID: 4353495376030716351}
   projectile: {fileID: 406109102168165044, guid: 9bea52544c94d984db3b280c41c9d65f,
     type: 3}
-  muzzle: {fileID: 6194330859804084942, guid: 944c719534a08e34fb799bb419dac877, type: 3}
+  muzzleEffect: {fileID: 6194330859804084942, guid: 944c719534a08e34fb799bb419dac877,
+    type: 3}
   weaponComponents:
     acog: {fileID: 7664448800364870214}
     flashlight: {fileID: 7664448800364837968}

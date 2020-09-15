@@ -8,14 +8,43 @@ namespace TDS_MG.Shop
     [System.Serializable]
     public class GunShopItem
     {
-        public bool isOwned = false;
-        public WeaponType weaponType = WeaponType.NoWeapon;
-        public Button button = null;
-        public int price = 0;
+        [SerializeField] bool isOwned = false;
+        [SerializeField] WeaponType weaponType = WeaponType.NoWeapon;
+        [SerializeField] Button button = null;
+        [SerializeField] int price = 0;
 
-        public Image GetImageFromButton()
+        public bool IsOwned() => isOwned;
+
+        public void Own(bool isOwned)
+        {
+            this.isOwned = isOwned;
+        }
+
+        public WeaponType GetWeaponType()
+        {
+            return weaponType;
+        }
+
+        public Image GetButtonImage()
         {
             return button.image;
         }
+
+        public Image GetButtonChildrenImage()
+        {
+            Image[] images = button.GetComponentsInChildren<Image>();
+
+            foreach (Image image in images)
+            {
+                if (image != button.image)
+                {
+                    return image;
+                }
+            }
+
+            return button.image;
+        }
+
+        public int GetPrice() => price;
     }
 }

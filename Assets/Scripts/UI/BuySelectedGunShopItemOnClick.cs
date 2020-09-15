@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 namespace TDS_MG.UI
 {
-    public class SelectShopItemOnClick : MonoBehaviour
+    [RequireComponent(typeof(Button))]
+    public class BuySelectedGunShopItemOnClick : MonoBehaviour
     {
-        [SerializeField] WeaponType weaponType = WeaponType.NoWeapon;
-
         Button button;
         GunShop gunShop;
 
@@ -21,10 +20,7 @@ namespace TDS_MG.UI
 
         private void Start()
         {
-            if (gunShop != null)
-            {
-                button.onClick.AddListener(() => gunShop.SelectGunShopItem(weaponType));
-            }
+            button.onClick.AddListener(() => gunShop.BuySelectedGunShopItem());
         }
     }
 }

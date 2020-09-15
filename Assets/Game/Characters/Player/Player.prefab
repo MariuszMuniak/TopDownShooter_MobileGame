@@ -6137,6 +6137,7 @@ GameObject:
   - component: {fileID: 8978039269739413936}
   - component: {fileID: 1523817709}
   - component: {fileID: 1329024086}
+  - component: {fileID: 1152132802}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6232,7 +6233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -6253,28 +6253,60 @@ MonoBehaviour:
     weapon: {fileID: 7824788272729863714, guid: 62cdeec0dbde53a43b5bac1c724bc2b6,
       type: 3}
     icon: {fileID: 21300000, guid: e54584709646e45f887dc9e1d639e76f, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 0
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 0}
     icon: {fileID: 21300000, guid: 866e9f49ae0bc43c7a4f76c7ad242c1e, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 1
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 0}
     icon: {fileID: 21300000, guid: b99ccc8fe738646758fe4e40193416fd, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 0
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 0}
     icon: {fileID: 21300000, guid: e8062a492e27c4d7fba3444c94f1eaee, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 1
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 0}
     icon: {fileID: 21300000, guid: b45b7fefa42c442c1b31e06a552269ef, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 0
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 4395250887839040296, guid: 620e7c1155f54b640a3a62b9f4baf6c4,
       type: 3}
     icon: {fileID: 21300000, guid: 8a08a60017f004fec9cbcde3fda25df7, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 0
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 0}
     icon: {fileID: 21300000, guid: 3541de05ec2e14cc98a3dc54a1677198, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 0
+      reloadSpeed: 0
   - isOwned: 0
     weapon: {fileID: 0}
     icon: {fileID: 21300000, guid: a863c9b61917f4f90b6763404c9ce5a6, type: 3}
+    weaponStats:
+      damage: 0
+      fireRate: 0
+      reloadSpeed: 0
 --- !u!114 &1523817709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6322,3 +6354,16 @@ MonoBehaviour:
   - stateIndex: 3
     isSingleShot: 1
     playTime: 0
+--- !u!114 &1152132802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7e6921f3867714a8bf5db505603eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyOwned: 100

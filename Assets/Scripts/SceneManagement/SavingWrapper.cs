@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TDS_MG.SceneManagement;
+using TDS_MG.Saving;
 using UnityEngine;
 
-namespace TDS_MG.Saving
+namespace TDS_MG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
         [SerializeField] float fadeInTime = 0.2f;
 
         const string defaultSaveFile = "save";
+
+        private void Start()
+        {
+            Load();
+        }
 
         private IEnumerator LoadLastScene()
         {
@@ -24,19 +29,27 @@ namespace TDS_MG.Saving
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                Load();
-            }
+            InputsInDebugBuild();
+        }
 
-            if (Input.GetKeyDown(KeyCode.S))
+        private void InputsInDebugBuild()
+        {
+            if (Debug.isDebugBuild)
             {
-                Save();
-            }
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    Load();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Delete))
-            {
-                Delete();
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    Save();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Delete))
+                {
+                    Delete();
+                }
             }
         }
 

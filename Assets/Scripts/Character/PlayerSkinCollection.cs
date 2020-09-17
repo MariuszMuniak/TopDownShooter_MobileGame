@@ -11,7 +11,7 @@ namespace TDS_MG.Character
 
         CollectedSkin activeSkin = null;
 
-        private void Start()
+        private void Awake()
         {
             FindActiveSkin();
         }
@@ -49,6 +49,11 @@ namespace TDS_MG.Character
 
         public void Activate(PlayerSkinType skinType)
         {
+            if (activeSkin.skinnedMesh == null)
+            {
+                return;
+            }
+
             DeactivateCurrentSkin();
 
             activeSkin = GetCollectedSkin(skinType);

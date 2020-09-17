@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TDS_MG.Saving;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TDS_MG.SceneManagement
 {
@@ -10,21 +11,11 @@ namespace TDS_MG.SceneManagement
     {
         [SerializeField] float fadeInTime = 0.2f;
 
-        const string defaultSaveFile = "save";
+        const string DEFAULT_SAVE_FILE = "save";
 
-        private void Start()
+        private void Awake()
         {
             Load();
-        }
-
-        private IEnumerator LoadLastScene()
-        {
-            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
-
-            Fader fader = FindObjectOfType<Fader>();
-            fader.FadeOutImmediate();
-
-            yield return fader.FadeIn(fadeInTime);
         }
 
         void Update()
@@ -55,17 +46,39 @@ namespace TDS_MG.SceneManagement
 
         public void Save()
         {
-            GetComponent<SavingSystem>().Save(defaultSaveFile);
+            GetComponent<SavingSystem>().Save(DEFAULT_SAVE_FILE);
         }
 
         public void Load()
         {
-            GetComponent<SavingSystem>().Load(defaultSaveFile);
+            GetComponent<SavingSystem>().Load(DEFAULT_SAVE_FILE);
         }
 
         public void Delete()
         {
-            GetComponent<SavingSystem>().Delete(defaultSaveFile);
+            GetComponent<SavingSystem>().Delete(DEFAULT_SAVE_FILE);
+        }
+
+        public void SaveAndLoadScene(int sceneBuildIndex)
+        {
+            GetComponent<SavingSystem>().Save(DEFAULT_SAVE_FILE);
+            StartCoroutine(LoadScene(sceneBuildIndex));
+        }
+
+        private IEnumerator LoadScene(int sceneBuildIndex)
+        {
+            yield return FindObjectOfType<Fader>().FadeOut(fadeInTime);
+            SceneManager.LoadScene(sceneBuildIndex);
+        }
+
+        private IEnumerator LoadLastScene()
+        {
+            yield return GetComponent<SavingSystem>().LoadLastScene(DEFAULT_SAVE_FILE);
+
+            Fader fader = FindObjectOfType<Fader>();
+            fader.FadeOutImmediate();
+
+            yield return fader.FadeIn(fadeInTime);
         }
     }
 }

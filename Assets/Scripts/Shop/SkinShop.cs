@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TDS_MG.Character;
+using TDS_MG.Saving;
+using TDS_MG.SceneManagement;
 using TDS_MG.UI;
 using TMPro;
 using UnityEngine;
 
 namespace TDS_MG.Shop
 {
-    public class SkinShop : MonoBehaviour
+    public class SkinShop : MonoBehaviour, ISaveable
     {
         [SerializeField] CharacterSkinShopPanel skinShopPanel = null;
         [SerializeField] SkinShopItem[] skinShopItems = new SkinShopItem[22];
 
         PlayerSkinCollection playerSkinCollection;
         Wallet wallet;
+        SavingWrapper savingWrapper;
         int currentSkinIndex = 0;
         int selectedSkinIndex = 0;
 
@@ -21,6 +24,7 @@ namespace TDS_MG.Shop
         {
             playerSkinCollection = FindObjectOfType<PlayerSkinCollection>();
             wallet = FindObjectOfType<Wallet>();
+            savingWrapper = FindObjectOfType<SavingWrapper>();
         }
 
         private void Start()
@@ -36,6 +40,7 @@ namespace TDS_MG.Shop
                 playerSkinCollection.TakePossession(skinShopItems[selectedSkinIndex].skinType);
                 SelectSkin();
                 wallet.SpendMoney(skinShopItems[selectedSkinIndex].price);
+                savingWrapper.Save();
             }
         }
 
@@ -112,6 +117,16 @@ namespace TDS_MG.Shop
             {
                 selectedSkinIndex = skinShopItems.Length - 1;
             }
+        }
+
+        public object CaptureState()
+        {
+            return currentSkinIndex;
+        }
+
+        public void RestoreState(object state)
+        {
+            currentSkinIndex = (int)state;
         }
 
         [System.Serializable]

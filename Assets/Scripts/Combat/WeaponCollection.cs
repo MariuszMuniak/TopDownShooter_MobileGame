@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TDS_MG.Attributes;
+using TDS_MG.Saving;
 using UnityEngine;
 
 namespace TDS_MG.Combat
 {
-    public class WeaponCollection : MonoBehaviour
+    public class WeaponCollection : MonoBehaviour, ISaveable
     {
         [SerializeField] CollectedWeapon[] collectedWeapons = new CollectedWeapon[0];
 
@@ -13,7 +14,7 @@ namespace TDS_MG.Combat
 
         int weaponIndex = 0;
 
-        private void Awake()
+        private void Start()
         {
             InstantiateAllWeapons();
             ResetWeaponTransformInCollecrion();
@@ -24,10 +25,11 @@ namespace TDS_MG.Combat
         {
             foreach (CollectedWeapon collectedWeapon in collectedWeapons)
             {
-                if (collectedWeapon.weapon == null) { continue; }
-
-                Weapon instantiatedWeapon = Instantiate(collectedWeapon.weapon, transform);
-                collection.Add(instantiatedWeapon);
+                if (collectedWeapon.isOwned && collectedWeapon.weapon != null)
+                {
+                    Weapon instantiatedWeapon = Instantiate(collectedWeapon.weapon, transform);
+                    collection.Add(instantiatedWeapon);
+                }
             }
         }
 
@@ -166,12 +168,46 @@ namespace TDS_MG.Combat
             return weaponIndex;
         }
 
+        public object CaptureState()
+        {
+            List<CollectedWeaponSaveData> saveDatas = new List<CollectedWeaponSaveData>();
+
+            foreach (CollectedWeapon collectedWeapon in collectedWeapons)
+            {
+                CollectedWeaponSaveData weapon = new CollectedWeaponSaveData();
+                weapon.isOwned = collectedWeapon.isOwned;
+                weapon.weaponStats = collectedWeapon.weaponStats;
+
+                saveDatas.Add(weapon);
+            }
+
+            return saveDatas;
+        }
+
+        public void RestoreState(object state)
+        {
+            List<CollectedWeaponSaveData> saveDatas = (List<CollectedWeaponSaveData>)state;
+
+            for (int i = 0; i < collectedWeapons.Length; i++)
+            {
+                collectedWeapons[i].isOwned = saveDatas[i].isOwned;
+                collectedWeapons[i].weaponStats = saveDatas[i].weaponStats;
+            }
+        }
+
         [System.Serializable]
         private class CollectedWeapon
         {
             public bool isOwned = false;
             public Weapon weapon = null;
             public Sprite icon = null;
+            public WeaponStats weaponStats = new WeaponStats();
+        }
+
+        [System.Serializable]
+        private class CollectedWeaponSaveData
+        {
+            public bool isOwned = false;
             public WeaponStats weaponStats = new WeaponStats();
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TDS_MG.Attributes;
 using TDS_MG.Combat;
+using TDS_MG.SceneManagement;
 using TDS_MG.UI;
 using TMPro;
 using UnityEngine;
@@ -25,11 +26,13 @@ namespace TDS_MG.Shop
         Wallet wallet;
         GunShopItem selectedItem;
         Image selectedIcon;
+        SavingWrapper savingWrapper;
 
         private void Awake()
         {
             weaponCollection = GameObject.FindWithTag("Player").GetComponent<WeaponCollection>();
             wallet = FindObjectOfType<Wallet>();
+            savingWrapper = FindObjectOfType<SavingWrapper>();
         }
 
         private void Start()
@@ -146,6 +149,7 @@ namespace TDS_MG.Shop
                 wallet.SpendMoney(price);
                 weaponCollection.SetWeaponStats(selectedItem.GetWeaponType(), stats);
                 ShowConfiguredGunShopItemPanel(selectedItem);
+                savingWrapper.Save();
             }
         }
 
@@ -179,6 +183,7 @@ namespace TDS_MG.Shop
                 selectedItem.Own(true);
                 weaponCollection.TakePossession(selectedItem.GetWeaponType());
                 ShowConfiguredGunShopItemPanel(selectedItem);
+                savingWrapper.Save();
             }
         }
 

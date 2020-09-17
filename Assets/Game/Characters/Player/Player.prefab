@@ -3194,10 +3194,12 @@ GameObject:
   - component: {fileID: 8978039269739413839}
   - component: {fileID: 8978039269739413938}
   - component: {fileID: 8978039269739413939}
-  - component: {fileID: 8978039269739413936}
   - component: {fileID: 1523817709}
   - component: {fileID: 1329024086}
   - component: {fileID: 1152132802}
+  - component: {fileID: 8978039269739413936}
+  - component: {fileID: 1877022647}
+  - component: {fileID: 1877022658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3296,6 +3298,66 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1523817709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf00de2a598b174586c01e46ee4b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inMainMenu:
+    avatarScale: 1
+    animatorController: {fileID: 9100000, guid: 6a2817c07bee5e741b3e86fc889ce3a9,
+      type: 2}
+  inPlayMode:
+    avatarScale: 0.65
+    animatorController: {fileID: 9100000, guid: b767c40876583da479bbb3c79dd99a36,
+      type: 2}
+--- !u!114 &1329024086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b602a396b301944806490b45d84b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeBetweenState: 15
+  maxTimeBetweenState: 35
+  idleStates:
+  - stateIndex: 0
+    isSingleShot: 1
+    playTime: 0
+  - stateIndex: 1
+    isSingleShot: 0
+    playTime: 12
+  - stateIndex: 2
+    isSingleShot: 0
+    playTime: 12
+  - stateIndex: 3
+    isSingleShot: 1
+    playTime: 0
+--- !u!114 &1152132802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7e6921f3867714a8bf5db505603eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyOwned: 99999
 --- !u!114 &8978039269739413936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3367,7 +3429,7 @@ MonoBehaviour:
       damage: 0
       fireRate: 0
       reloadSpeed: 0
---- !u!114 &1523817709
+--- !u!114 &1877022647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3376,18 +3438,77 @@ MonoBehaviour:
   m_GameObject: {fileID: 8978039269739413838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf00de2a598b174586c01e46ee4b730, type: 3}
+  m_Script: {fileID: 11500000, guid: eebaf31d88b0b204c9be5870d69a229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inMainMenu:
-    avatarScale: 1
-    animatorController: {fileID: 9100000, guid: 6a2817c07bee5e741b3e86fc889ce3a9,
-      type: 2}
-  inPlayMode:
-    avatarScale: 0.65
-    animatorController: {fileID: 9100000, guid: b767c40876583da479bbb3c79dd99a36,
-      type: 2}
---- !u!114 &1329024086
+  collectedSkins:
+  - skinType: 0
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314018396}
+  - skinType: 1
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313983726}
+  - skinType: 2
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313957808}
+  - skinType: 3
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313922192}
+  - skinType: 4
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313980518}
+  - skinType: 5
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313959410}
+  - skinType: 6
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314013170}
+  - skinType: 7
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314038160}
+  - skinType: 8
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314017750}
+  - skinType: 9
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314025814}
+  - skinType: 10
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313914102}
+  - skinType: 11
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313923220}
+  - skinType: 12
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313980112}
+  - skinType: 13
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314000288}
+  - skinType: 14
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313920668}
+  - skinType: 15
+    isOwned: 1
+    skinnedMesh: {fileID: 387986076314039944}
+  - skinType: 16
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314001412}
+  - skinType: 17
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313919220}
+  - skinType: 18
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314021448}
+  - skinType: 19
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314022602}
+  - skinType: 20
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076314037116}
+  - skinType: 21
+    isOwned: 0
+    skinnedMesh: {fileID: 387986076313994244}
+--- !u!114 &1877022658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3396,34 +3517,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8978039269739413838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b602a396b301944806490b45d84b0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetweenState: 15
-  maxTimeBetweenState: 35
-  idleStates:
-  - stateIndex: 0
-    isSingleShot: 1
-    playTime: 0
-  - stateIndex: 1
-    isSingleShot: 0
-    playTime: 12
-  - stateIndex: 2
-    isSingleShot: 0
-    playTime: 12
-  - stateIndex: 3
-    isSingleShot: 1
-    playTime: 0
---- !u!114 &1152132802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8978039269739413838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7e6921f3867714a8bf5db505603eab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyOwned: 99999
+  uniqueIdentifier: aab2d2a2-b1de-49e4-885e-9470fbd23774

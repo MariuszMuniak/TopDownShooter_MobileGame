@@ -25,6 +25,11 @@ namespace TDS_MG.Attributes
             return GetWeaponStatsProgressionPerUpgrationLevel(weaponType).GetUpgradeValue(statsType, upgradeLevel);
         }
 
+        public WeaponStats GetDefaultWeaponStatsNotAsReference(WeaponType weaponType)
+        {
+            return GetWeaponStatsProgressionPerUpgrationLevel(weaponType).GetDefaultWeaponStatsNotAsReference();
+        }
+
         private WeaponStatsProgressionPerUpgrationLevel GetWeaponStatsProgressionPerUpgrationLevel(WeaponType weaponType)
         {
             foreach (WeaponStatsProgressionPerUpgrationLevel weaponStatsProgressionPerUpgrationLevel in weaponStatsProgressionPerUpgrationLevels)

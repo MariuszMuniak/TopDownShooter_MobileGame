@@ -99,6 +99,17 @@ namespace TDS_MG.Attributes
 
             return "0";
         }
+
+        public WeaponStats GetDefaultWeaponStatsNotAsReference()
+        {
+            WeaponStats defaultStats = weaponStatsWithCostPerUpgrades[0].weaponStats;
+            WeaponStats stats = new WeaponStats();
+            stats.damage = defaultStats.damage;
+            stats.fireRate = defaultStats.fireRate;
+            stats.reloadSpeed = defaultStats.reloadSpeed;
+
+            return stats;
+        }
     }
 
     [System.Serializable]

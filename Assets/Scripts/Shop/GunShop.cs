@@ -182,6 +182,7 @@ namespace TDS_MG.Shop
                 wallet.SpendMoney(selectedItem.GetPrice());
                 selectedItem.isOwned = true;
                 weaponCollection.TakePossession(selectedItem.GetWeaponType());
+                SetDefaultWeaponStats(selectedItem.GetWeaponType());
                 RefreshGunShopItemsConfiguration();
                 ShowConfiguredGunShopItemPanel(selectedItem);
                 savingWrapper.Save();
@@ -191,6 +192,12 @@ namespace TDS_MG.Shop
         private bool CanBuy(int price)
         {
             return wallet.HaveEnoughMoney(price);
+        }
+
+        private void SetDefaultWeaponStats(WeaponType weaponType)
+        {
+            WeaponStats stats = weaponStatsProgression.GetDefaultWeaponStatsNotAsReference(weaponType);
+            weaponCollection.SetWeaponStats(weaponType, stats);
         }
 
         private class WeaponStatsUpgradeLevel

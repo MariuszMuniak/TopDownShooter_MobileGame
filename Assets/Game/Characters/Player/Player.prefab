@@ -3264,7 +3264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339c310a4322e1543be99c2540608092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 6
   gravity: -1
   moveJoystick: {fileID: 0}
   rotationJoystick: {fileID: 0}

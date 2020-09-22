@@ -17,6 +17,7 @@ namespace TDS_MG.Combat
         private void Start()
         {
             InstantiateAllWeapons();
+            SetUpInstantiatedWeaponStats();
             ResetWeaponTransformInCollecrion();
             HideAllWeapons();
         }
@@ -30,6 +31,17 @@ namespace TDS_MG.Combat
                     Weapon instantiatedWeapon = Instantiate(collectedWeapon.weapon, transform);
                     collection.Add(instantiatedWeapon);
                 }
+            }
+        }
+
+        private void SetUpInstantiatedWeaponStats()
+        {
+            foreach(Weapon weapon in collection)
+            {
+                WeaponStats stats = GetWeaponStats(weapon.GetWeaponType());
+                weapon.SetDamage(stats.damage);
+                weapon.SetTimeBetweenAttack(stats.fireRate);
+                weapon.SetReloadSpeed(stats.reloadSpeed);
             }
         }
 

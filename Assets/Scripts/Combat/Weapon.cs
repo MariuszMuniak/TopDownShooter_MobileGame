@@ -21,6 +21,7 @@ namespace TDS_MG.Combat
 
         int ammoInMagazine = 0;
         float timeSinceLastAttack = Mathf.Infinity;
+        float reloadSpeed = 3f;
 
         private void Start()
         {
@@ -119,9 +120,19 @@ namespace TDS_MG.Combat
             ammoInMagazine = magazineSize;
         }
 
-        public void SetTimeBetweenAttack(int fireRate)
+        public void SetDamage(int damage)
+        {
+            this.damage = damage;
+        }
+
+        public void SetTimeBetweenAttack(float fireRate)
         {
             timeBetweenAttack = 1f / fireRate;
+        }
+
+        public void SetReloadSpeed(float reloadSpeed)
+        {
+            this.reloadSpeed = reloadSpeed;
         }
 
         private void OnDrawGizmos()

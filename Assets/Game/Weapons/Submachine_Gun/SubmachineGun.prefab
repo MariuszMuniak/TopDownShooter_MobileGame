@@ -635,7 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 7
   damage: 10
-  magazineSize: 30
+  magazineSize: 16
   timeBetweenAttack: 0.5
   range: 10
   radius: 0.75

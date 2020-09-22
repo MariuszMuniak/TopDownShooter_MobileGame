@@ -182,6 +182,7 @@ namespace TDS_MG.Shop
                 wallet.SpendMoney(selectedItem.GetPrice());
                 selectedItem.isOwned = true;
                 weaponCollection.TakePossession(selectedItem.GetWeaponType());
+                RefreshGunShopItemsConfiguration();
                 ShowConfiguredGunShopItemPanel(selectedItem);
                 savingWrapper.Save();
             }

@@ -56,4 +56,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2356e0b5081b541a45c5473078551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInTime: 0.2
+  fadeInTime: 0.25

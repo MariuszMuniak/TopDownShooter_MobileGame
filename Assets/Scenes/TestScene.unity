@@ -780,7 +780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1071575433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,6 +1620,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281446288398474223, guid: baf27f1356cdc3b4e88a10f8047367a9,
+        type: 3}
+      propertyPath: maxHealth
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7429370837758515673, guid: baf27f1356cdc3b4e88a10f8047367a9,
         type: 3}
@@ -2572,6 +2577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5823012424961041640, guid: a91a8a44cb2c25441b98ec37052b2631,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5823012424961041643, guid: a91a8a44cb2c25441b98ec37052b2631,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2825,5 +2835,40 @@ PrefabInstance:
       propertyPath: rotationJoystick
       value: 
       objectReference: {fileID: 751242016}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[1].isOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[2].isOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[3].isOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[4].isOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[5].isOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[6].isOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413936, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: collectedWeapons.Array.data[7].isOwned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d6ae3810578b9d4690d42af18a8df6e, type: 3}

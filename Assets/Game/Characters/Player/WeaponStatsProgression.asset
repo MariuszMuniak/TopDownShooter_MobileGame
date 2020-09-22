@@ -15,32 +15,32 @@ MonoBehaviour:
   weaponStatsProgressionPerUpgrationLevels:
   - weaponType: 1
     weaponStatsWithCostPerUpgrades:
-    - price: 100
+    - price: 0
       weaponStats:
         damage: 8
         fireRate: 4.5
         reloadSpeed: 2.5
-    - price: 200
+    - price: 100
       weaponStats:
         damage: 12
         fireRate: 4.75
         reloadSpeed: 2.45
-    - price: 300
+    - price: 250
       weaponStats:
         damage: 15
         fireRate: 5.1
         reloadSpeed: 2.35
-    - price: 400
+    - price: 500
       weaponStats:
         damage: 19
         fireRate: 5.5
         reloadSpeed: 2.2
-    - price: 500
+    - price: 750
       weaponStats:
         damage: 23
         fireRate: 6
         reloadSpeed: 2
-    - price: 600
+    - price: 1250
       weaponStats:
         damage: 30
         fireRate: 7
@@ -49,223 +49,223 @@ MonoBehaviour:
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 12
+        fireRate: 6.5
+        reloadSpeed: 3.25
+    - price: 300
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 16
+        fireRate: 6.75
+        reloadSpeed: 3.2
+    - price: 600
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 20
+        fireRate: 7.1
+        reloadSpeed: 3.1
+    - price: 1200
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 25
+        fireRate: 7.5
+        reloadSpeed: 2.95
+    - price: 1750
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 30
+        fireRate: 8
+        reloadSpeed: 2.75
+    - price: 2500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 39
+        fireRate: 9
+        reloadSpeed: 2.5
   - weaponType: 3
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 10
+        fireRate: 8.5
+        reloadSpeed: 3.25
+    - price: 300
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 12
+        fireRate: 8.75
+        reloadSpeed: 3.2
+    - price: 600
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 15
+        fireRate: 9.1
+        reloadSpeed: 3.1
+    - price: 1200
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 20
+        fireRate: 9.5
+        reloadSpeed: 2.95
+    - price: 1750
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 24
+        fireRate: 10
+        reloadSpeed: 2.75
+    - price: 2500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 32
+        fireRate: 11
+        reloadSpeed: 2.5
   - weaponType: 4
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 175
+        fireRate: 0.85
+        reloadSpeed: 3.25
+    - price: 150
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 185
+        fireRate: 0.88
+        reloadSpeed: 3.2
+    - price: 300
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 198
+        fireRate: 0.92
+        reloadSpeed: 3.1
+    - price: 600
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 213
+        fireRate: 0.95
+        reloadSpeed: 2.95
+    - price: 900
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 225
+        fireRate: 1
+        reloadSpeed: 2.75
+    - price: 1750
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 250
+        fireRate: 1.1
+        reloadSpeed: 2.5
   - weaponType: 5
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 110
+        fireRate: 0.5
+        reloadSpeed: 4.45
+    - price: 500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 118
+        fireRate: 0.53
+        reloadSpeed: 4.4
+    - price: 1000
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 125
+        fireRate: 0.57
+        reloadSpeed: 4.3
+    - price: 1500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 133
+        fireRate: 0.6
+        reloadSpeed: 4.15
+    - price: 2250
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 140
+        fireRate: 0.65
+        reloadSpeed: 3.95
+    - price: 3000
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 150
+        fireRate: 0.75
+        reloadSpeed: 3.7
   - weaponType: 6
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 30
+        fireRate: 2.25
+        reloadSpeed: 3.25
+    - price: 200
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 38
+        fireRate: 2.5
+        reloadSpeed: 3.2
+    - price: 400
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 43
+        fireRate: 2.85
+        reloadSpeed: 3.1
+    - price: 800
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 49
+        fireRate: 3.25
+        reloadSpeed: 2.95
+    - price: 1150
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 55
+        fireRate: 3.75
+        reloadSpeed: 2.75
+    - price: 2000
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 65
+        fireRate: 4.75
+        reloadSpeed: 2.5
   - weaponType: 7
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 6
+        fireRate: 7.5
+        reloadSpeed: 2.25
+    - price: 125
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 10
+        fireRate: 7.75
+        reloadSpeed: 2.2
+    - price: 275
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 13
+        fireRate: 8.1
+        reloadSpeed: 2.1
+    - price: 550
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 18
+        fireRate: 8.5
+        reloadSpeed: 1.95
+    - price: 800
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 20
+        fireRate: 9
+        reloadSpeed: 1.75
+    - price: 1500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 26
+        fireRate: 10
+        reloadSpeed: 1.5
   - weaponType: 9
     weaponStatsWithCostPerUpgrades:
     - price: 0
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 50
+        fireRate: 9.5
+        reloadSpeed: 5.75
+    - price: 1000
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 57
+        fireRate: 9.75
+        reloadSpeed: 5.7
+    - price: 1750
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 63
+        fireRate: 10.1
+        reloadSpeed: 5.6
+    - price: 2500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 70
+        fireRate: 10.5
+        reloadSpeed: 5.45
+    - price: 3500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
-    - price: 0
+        damage: 80
+        fireRate: 11
+        reloadSpeed: 5.25
+    - price: 4500
       weaponStats:
-        damage: 0
-        fireRate: 0
-        reloadSpeed: 0
+        damage: 95
+        fireRate: 12
+        reloadSpeed: 5

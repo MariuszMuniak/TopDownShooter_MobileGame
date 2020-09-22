@@ -3380,28 +3380,31 @@ MonoBehaviour:
       fireRate: 4.5
       reloadSpeed: 2.5
   - isOwned: 0
-    weapon: {fileID: 0}
+    weapon: {fileID: 6313629682162075181, guid: 8d1a2b5172164f043b8aa646d733f4b4,
+      type: 3}
     icon: {fileID: 21300000, guid: 866e9f49ae0bc43c7a4f76c7ad242c1e, type: 3}
     weaponStats:
       damage: 0
-      fireRate: 1
+      fireRate: 0
       reloadSpeed: 0
   - isOwned: 0
-    weapon: {fileID: 0}
+    weapon: {fileID: 233353942185191169, guid: cdea5441a4e63a44ea55146774fefff5, type: 3}
     icon: {fileID: 21300000, guid: b99ccc8fe738646758fe4e40193416fd, type: 3}
     weaponStats:
       damage: 0
       fireRate: 0
       reloadSpeed: 0
   - isOwned: 0
-    weapon: {fileID: 0}
+    weapon: {fileID: 1918272745481540896, guid: ca44e0ad195d0574b8b36784442421a8,
+      type: 3}
     icon: {fileID: 21300000, guid: e8062a492e27c4d7fba3444c94f1eaee, type: 3}
     weaponStats:
       damage: 0
       fireRate: 1
       reloadSpeed: 0
   - isOwned: 0
-    weapon: {fileID: 0}
+    weapon: {fileID: 8152874865025338238, guid: bd254e3eac00aa449ae2b82967ad3add,
+      type: 3}
     icon: {fileID: 21300000, guid: b45b7fefa42c442c1b31e06a552269ef, type: 3}
     weaponStats:
       damage: 0
@@ -3416,14 +3419,16 @@ MonoBehaviour:
       fireRate: 0
       reloadSpeed: 0
   - isOwned: 0
-    weapon: {fileID: 0}
+    weapon: {fileID: 6672515510133780295, guid: ee502c14389ca904296132d43ee21c1c,
+      type: 3}
     icon: {fileID: 21300000, guid: 3541de05ec2e14cc98a3dc54a1677198, type: 3}
     weaponStats:
       damage: 0
       fireRate: 0
       reloadSpeed: 0
   - isOwned: 0
-    weapon: {fileID: 0}
+    weapon: {fileID: 1786325564980056753, guid: 52077812b4541e74181cf8ebe70807c0,
+      type: 3}
     icon: {fileID: 21300000, guid: a863c9b61917f4f90b6763404c9ce5a6, type: 3}
     weaponStats:
       damage: 0

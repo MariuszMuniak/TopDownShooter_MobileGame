@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5047690352991048718
+--- !u!1001 &2711649493733910914
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -14,22 +14,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
-        type: 3}
       propertyPath: InitialModule.startSizeY.scalar
       value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
         type: 3}
       propertyPath: InitialModule.startSizeY.minScalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
@@ -42,10 +37,15 @@ PrefabInstance:
       propertyPath: InitialModule.startSizeZ.minScalar
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5134419960252444782, guid: dacf0b8c7f3564d4094b3acf416a93f5,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5134419961522586980, guid: dacf0b8c7f3564d4094b3acf416a93f5,
         type: 3}
       propertyPath: m_Name
-      value: Projectile_Pistol_Variant
+      value: Projectile_Shotgun_Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5134419961522586981, guid: dacf0b8c7f3564d4094b3acf416a93f5,
         type: 3}
@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134419961522586981, guid: dacf0b8c7f3564d4094b3acf416a93f5,
         type: 3}
-      propertyPath: m_LocalScale.z
+      propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5134419961522586981, guid: dacf0b8c7f3564d4094b3acf416a93f5,
@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134419961522586981, guid: dacf0b8c7f3564d4094b3acf416a93f5,
         type: 3}
-      propertyPath: m_LocalScale.x
+      propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7852537013385532781, guid: dacf0b8c7f3564d4094b3acf416a93f5,

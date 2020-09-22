@@ -17871,27 +17871,27 @@ MonoBehaviour:
   - isOwned: 0
     weaponType: 1
     button: {fileID: 1243809441}
-    price: 100
+    price: 0
   - isOwned: 0
     weaponType: 2
     button: {fileID: 226135248}
-    price: 300
+    price: 1000
   - isOwned: 0
     weaponType: 3
     button: {fileID: 1797673645}
-    price: 300
+    price: 1000
   - isOwned: 0
     weaponType: 4
     button: {fileID: 1456309199}
-    price: 300
+    price: 500
   - isOwned: 0
     weaponType: 5
     button: {fileID: 1579641297}
-    price: 300
+    price: 1750
   - isOwned: 0
     weaponType: 6
     button: {fileID: 458075958}
-    price: 300
+    price: 750
   - isOwned: 0
     weaponType: 7
     button: {fileID: 1763542046}
@@ -17899,7 +17899,7 @@ MonoBehaviour:
   - isOwned: 0
     weaponType: 9
     button: {fileID: 1123416210}
-    price: 300
+    price: 4000
 --- !u!4 &2085493738
 Transform:
   m_ObjectHideFlags: 0

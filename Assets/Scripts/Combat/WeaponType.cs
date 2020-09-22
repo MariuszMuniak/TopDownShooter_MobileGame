@@ -7,7 +7,7 @@
     Shotgun,
     SniperRifle,
     Rifle,
-    SubMachineGun,
+    SubmachineGun,
     RPG,
     MiniGun,
     Grenades,

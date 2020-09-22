@@ -45,7 +45,7 @@ namespace TDS_MG.Shop
         {
             foreach (GunShopItem gunShopItem in gunShopItems)
             {
-                gunShopItem.Own(weaponCollection.IsOwnedWeapon(gunShopItem.GetWeaponType()));
+                gunShopItem.isOwned = weaponCollection.IsOwnedWeapon(gunShopItem.GetWeaponType());
                 RefreshGunShopItemsIcon(gunShopItem);
             }
         }
@@ -180,7 +180,7 @@ namespace TDS_MG.Shop
             if (CanBuy(selectedItem.GetPrice()))
             {
                 wallet.SpendMoney(selectedItem.GetPrice());
-                selectedItem.Own(true);
+                selectedItem.isOwned = true;
                 weaponCollection.TakePossession(selectedItem.GetWeaponType());
                 ShowConfiguredGunShopItemPanel(selectedItem);
                 savingWrapper.Save();

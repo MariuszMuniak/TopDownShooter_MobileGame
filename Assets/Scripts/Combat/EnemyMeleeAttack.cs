@@ -9,22 +9,31 @@ namespace TDS_MG.Combat
     {
         int damage;
         BoxCollider boxCollider;
+        EnemyFighter fighter;
 
         private void Awake()
         {
             boxCollider = GetComponent<BoxCollider>();
+            fighter = GetComponentInParent<EnemyFighter>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void Start()
         {
-            if (other.gameObject.CompareTag("Player"))
+            boxCollider.isTrigger = false;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
             {
-                Health health = other.gameObject.GetComponent<Health>();
+                Health health = collision.gameObject.GetComponent<Health>();
 
                 if (health != null)
                 {
-                    health.TakeDamage(damage); 
+                    health.TakeDamage(damage);
                 }
+
+                fighter.InstantiateHitEffect(collision.contacts[0].point);
 
                 boxCollider.enabled = false;
             }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.Attributes;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,7 @@ namespace TDS_MG.Combat
         [SerializeField] BoxCollider rightHandCollider = null;
         [SerializeField] float minAttackSpeed = 0.4f;
         [SerializeField] float maxAttackSpeed = 0.8f;
+        [SerializeField] GameObject hitEffect = null;
 
         Animator animator;
         Transform player;
@@ -39,19 +41,6 @@ namespace TDS_MG.Combat
             timeSinceLastAttack += Time.deltaTime;
         }
 
-        public void Attack()
-        {
-            if (!CanAttack()) { return; }
-
-            animator.SetTrigger("meleeAttack");
-            timeSinceLastAttack = 0f;
-        }
-
-        public void ActivateRightHandCollider()
-        {
-            rightHandCollider.enabled = true;
-        }
-
         public void DeactivateRightHandCollider()
         {
             rightHandCollider.enabled = false;
@@ -64,6 +53,14 @@ namespace TDS_MG.Combat
             meleeAttack.SetDamage(damage);
         }
 
+        public void Attack()
+        {
+            if (!CanAttack()) { return; }
+
+            animator.SetTrigger("meleeAttack");
+            timeSinceLastAttack = 0f;
+        }
+
         private bool CanAttack()
         {
             return timeSinceLastAttack > timeBetweenAttacks && DistanceToPlayer() <= attackRange;
@@ -72,6 +69,29 @@ namespace TDS_MG.Combat
         private float DistanceToPlayer()
         {
             return Vector3.Distance(transform.position, player.position);
+        }
+
+        public void ActivateRightHandCollider()
+        {
+            rightHandCollider.enabled = true;
+        }
+
+        public void InstantiateHitEffect(Vector3 hitPositin)
+        {
+            Quaternion rotation = ReverseYRotation(transform.rotation);
+            Instantiate(hitEffect, hitPositin, rotation);
+        }
+
+        private Quaternion ReverseYRotation(Quaternion rotation)
+        {
+            Vector3 reversedRotation = new Vector3
+            {
+                x = rotation.eulerAngles.x,
+                y = rotation.eulerAngles.y - 180,
+                z = rotation.eulerAngles.z
+            };
+
+            return Quaternion.Euler(reversedRotation);
         }
     }
 }

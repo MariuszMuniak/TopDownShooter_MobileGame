@@ -133,6 +133,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 4935113022201209709}
   minAttackSpeed: 0.4
   maxAttackSpeed: 0.8
+  hitEffect: {fileID: 9184424169708353372, guid: aff0977810dadbe4faf714fb57833074,
+    type: 3}
 --- !u!114 &2994479574770470454
 MonoBehaviour:
   m_ObjectHideFlags: 0

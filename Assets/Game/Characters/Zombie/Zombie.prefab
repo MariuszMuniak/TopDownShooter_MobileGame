@@ -87,7 +87,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -103,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9736b7a29b645ab46beb819cf92f8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 9034943167760457711, guid: 026289709692a724788fc798a86fafcf, type: 3}
+  rewardProbability: 0.35
 --- !u!114 &1281446288398474220
 MonoBehaviour:
   m_ObjectHideFlags: 0

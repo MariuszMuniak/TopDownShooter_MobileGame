@@ -11,6 +11,9 @@ namespace TDS_MG.Control
 {
     public class EnemyController : MonoBehaviour
     {
+        [SerializeField] GameObject coin = null;
+        [SerializeField] [Range(0, 1)] float rewardProbability = 0.5f;
+
         EnemyMover mover;
         EnemyFighter fighter;
         Health health;
@@ -53,6 +56,7 @@ namespace TDS_MG.Control
             health.OnDeath.AddListener(() => fighter.enabled = false);
             health.OnDeath.AddListener(() => GetComponent<CapsuleCollider>().enabled = false);
             health.OnDeath.AddListener(() => GetComponent<NavMeshAgent>().enabled = false);
+            health.OnDeath.AddListener(() => InstantiateReward());
         }
 
         private void SetUpAnimator()
@@ -60,6 +64,19 @@ namespace TDS_MG.Control
             Animator animator = GetComponentInChildren<Animator>();
             animator.SetFloat("CycleOffset", Random.Range(0, 0.1f));
             animator.SetFloat("Locomotion_m", Random.Range(0.85f, 1.15f));
+        }
+
+        private void InstantiateReward()
+        {
+            if (CanInstantiateReward())
+            {
+                Instantiate(coin, transform.position, Quaternion.identity);
+            }
+        }
+
+        private bool CanInstantiateReward()
+        {
+            return Random.value < rewardProbability;
         }
     }
 }

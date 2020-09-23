@@ -9,35 +9,39 @@ namespace TDS_MG.Attributes
     {
         [SerializeField] int maxHealth = 100;
 
-        [HideInInspector] public int MaxHealth { get { return maxHealth; } }
-        [HideInInspector] public int CurrentHealth { get; private set; }
         [HideInInspector] public UnityEvent OnDeath;
 
+        int currentHealth;
         bool isDead = false;
 
         void Start()
         {
-            CurrentHealth = maxHealth;
+            currentHealth = maxHealth;
+        }
+
+        public float GetHealthPercentage()
+        {
+            return (float)currentHealth / maxHealth;
+        }
+
+        public void RestoreHealth(int amount)
+        {
+            currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            currentHealth = Mathf.Max(currentHealth - damage, 0);
+
+            if (currentHealth == 0 && !isDead)
+            {
+                Die();
+            }
         }
 
         public bool IsDead()
         {
             return isDead;
-        }
-
-        public void RestoreHealth(int amount)
-        {
-            CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
-        }
-
-        public void TakeDamage(int damage)
-        {
-            CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-
-            if (CurrentHealth == 0 && !isDead)
-            {
-                Die();
-            }
         }
 
         private void Die()

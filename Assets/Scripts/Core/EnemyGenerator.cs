@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.Attributes;
 using UnityEngine;
 
 namespace TDS_MG.Core
@@ -15,6 +16,7 @@ namespace TDS_MG.Core
         bool isGenerating = false;
         float timeSinceLastWave = Mathf.Infinity;
         float timeToNextWave = 0f;
+        List<Health> instantiateZombies = new List<Health>();
 
         private void Start()
         {
@@ -58,7 +60,8 @@ namespace TDS_MG.Core
 
             for (int i = 0; i < amount; i++)
             {
-                Instantiate(zombie, RandomWorldPositionInSpawnArea(spawnPoint), transform.rotation);
+                GameObject instantiateZombie = Instantiate(zombie, RandomWorldPositionInSpawnArea(spawnPoint), transform.rotation);
+                instantiateZombies.Add(instantiateZombie.GetComponent<Health>());
             }
         }
 
@@ -100,6 +103,24 @@ namespace TDS_MG.Core
         private void StopSpawnWaves()
         {
             isGenerating = false;
+        }
+
+        public bool AreAllZombiesDead()
+        {
+            if (isGenerating)
+            {
+                return false;
+            }
+
+            foreach(Health instantiateZombie in instantiateZombies)
+            {
+                if (!instantiateZombie.IsDead())
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         [System.Serializable]

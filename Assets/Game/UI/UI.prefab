@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 6055038205817544431}
   - component: {fileID: 8241905347974506544}
   - component: {fileID: 8074290947543484190}
+  - component: {fileID: 9086004242478317855}
   m_Layer: 5
   m_Name: BackToMainMenu_Button
   m_TagString: Untagged
@@ -494,6 +495,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9086004242478317855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657374345133270496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d5de1bba30d3d4a940b20ef270187f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneBuildIndex: 0
 --- !u!1 &663984368310352386
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +617,7 @@ GameObject:
   - component: {fileID: 621665014459693631}
   - component: {fileID: 772923997045452495}
   - component: {fileID: 3936216851111886134}
+  - component: {fileID: 2208503766878235548}
   m_Layer: 5
   m_Name: PlayAgain_Button
   m_TagString: Untagged
@@ -710,6 +725,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2208503766878235548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088609608961992356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf503d172fb8cd4c8613fc85ce83496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2304894831383665464
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,13 +870,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1981102740717814584}
-    characterCount: 0
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1073,13 +1100,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8150155517275122652}
-    characterCount: 0
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1338,6 +1365,7 @@ GameObject:
   - component: {fileID: 4512706253225025180}
   - component: {fileID: 6352723072212002873}
   - component: {fileID: 7480674784910036429}
+  - component: {fileID: 8144162910320004644}
   m_Layer: 5
   m_Name: BackToMainMenu_Button
   m_TagString: Untagged
@@ -1445,6 +1473,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8144162910320004644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775493772070931230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d5de1bba30d3d4a940b20ef270187f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneBuildIndex: 0
 --- !u!1 &4918094203070658639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,6 +1999,7 @@ GameObject:
   - component: {fileID: 5823012424961041640}
   - component: {fileID: 5823012424961041641}
   - component: {fileID: 5823012424961041622}
+  - component: {fileID: 1026794531}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -2047,6 +2089,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1026794531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823012424961041623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b42c230fcbf508428c9a0608a0023c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gui: {fileID: 8393294076142696976}
+  victoryPanel: {fileID: 663984368310352386}
+  defeatPanel: {fileID: 6177693426262533267}
 --- !u!1 &5823012425209940085
 GameObject:
   m_ObjectHideFlags: 0

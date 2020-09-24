@@ -9,6 +9,7 @@ namespace TDS_MG.Core
 {
     public class PlayerManager : MonoBehaviour
     {
+        [SerializeField] GameObject healthBar = null;
         [SerializeField] PlayerSetUp inMainMenu;
         [SerializeField] PlayerSetUp inPlayMode;
 
@@ -49,6 +50,7 @@ namespace TDS_MG.Core
 
         private void SetUpPlayer(PlayerSetUp setUp)
         {
+            healthBar.SetActive(setUp.healthBarVisible);
             animator.transform.localScale = new Vector3(setUp.avatarScale, setUp.avatarScale, setUp.avatarScale);
 
             if (setUp.animatorController != null)
@@ -61,6 +63,7 @@ namespace TDS_MG.Core
         private class PlayerSetUp
         {
             public float avatarScale = 1f;
+            public bool healthBarVisible = true;
             public RuntimeAnimatorController animatorController = null;
         }
     }

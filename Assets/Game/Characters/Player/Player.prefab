@@ -3311,12 +3311,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf00de2a598b174586c01e46ee4b730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 5990036113054903301}
   inMainMenu:
     avatarScale: 1
+    healthBarVisible: 0
     animatorController: {fileID: 9100000, guid: 6a2817c07bee5e741b3e86fc889ce3a9,
       type: 2}
   inPlayMode:
     avatarScale: 0.65
+    healthBarVisible: 1
     animatorController: {fileID: 9100000, guid: b767c40876583da479bbb3c79dd99a36,
       type: 2}
 --- !u!114 &1329024086
@@ -3646,6 +3649,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc19ff55cf257c149ba23499e1521c80, type: 3}
+--- !u!1 &5990036113054903301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7110131990181974207, guid: dc19ff55cf257c149ba23499e1521c80,
+    type: 3}
+  m_PrefabInstance: {fileID: 3570405918205426874}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5243187019257528542 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8741253318407289956, guid: dc19ff55cf257c149ba23499e1521c80,

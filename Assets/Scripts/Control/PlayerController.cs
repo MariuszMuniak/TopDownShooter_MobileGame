@@ -37,6 +37,7 @@ namespace TDS_MG.Control
             health.OnDeath.AddListener(() => DisableBehaviours());
             health.OnDeath.AddListener(() => GetComponent<CharacterController>().enabled = false);
             health.OnDeath.AddListener(() => isDead = true);
+            health.OnDeath.AddListener(() => FindObjectOfType<LevelController>().Defeat());
         }
 
         public void ActivateBehaviours()

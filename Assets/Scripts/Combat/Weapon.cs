@@ -7,16 +7,16 @@ namespace TDS_MG.Combat
     public class Weapon : MonoBehaviour
     {
         [SerializeField] WeaponType weaponType = WeaponType.NoWeapon;
-        [SerializeField] int damage = 10;
+        [SerializeField] protected int damage = 10;
         [SerializeField] int magazineSize = 30;
         [SerializeField] float timeBetweenAttack = 0.5f;
         [SerializeField] float range = 10f;
         [SerializeField] float radius = 0.5f;
-        [SerializeField] float projectileSpeed = 10f;
+        [SerializeField] protected float projectileSpeed = 10f;
         [SerializeField] GameObject projectile = null;
         [SerializeField] GameObject muzzleEffect = null;
         [SerializeField] LineRenderer laser = null;
-        [SerializeField] WeaponComponents weaponComponents = new WeaponComponents();
+        [SerializeField] protected WeaponComponents weaponComponents = new WeaponComponents();
         [Space]
         [SerializeField] Mesh gizmoMesh = null;
 
@@ -79,20 +79,25 @@ namespace TDS_MG.Combat
 
         public void Fire()
         {
-            GameObject instantiatedProjectil = InstantiatedProjectil();
-            SetUpProjectil(instantiatedProjectil);
+            InstantiateAndSetUpProjectile();
             InstantiateMuzzleEffect();
             ReduceAmmoInzMagazine();
 
             timeSinceLastAttack = 0f;
         }
 
-        private GameObject InstantiatedProjectil()
+        protected virtual void InstantiateAndSetUpProjectile()
+        {
+            GameObject instantiatedProjectil = InstantiatedProjectile();
+            SetUpProjectile(instantiatedProjectil);
+        }
+
+        protected GameObject InstantiatedProjectile()
         {
             return Instantiate(projectile, weaponComponents.Barrel.position, weaponComponents.Barrel.rotation);
         }
 
-        private void SetUpProjectil(GameObject instantiatedProjectil)
+        protected virtual void SetUpProjectile(GameObject instantiatedProjectil)
         {
             Vector3 point = instantiatedProjectil.transform.TransformPoint(GetPointFromCircleWithMaxRange());
             instantiatedProjectil.transform.LookAt(point);
@@ -100,7 +105,7 @@ namespace TDS_MG.Combat
             instantiatedProjectil.GetComponent<Projectile>().SetUp(damage, projectileSpeed, GetMaxLifetime());
         }
 
-        private Vector3 GetPointFromCircleWithMaxRange()
+        protected Vector3 GetPointFromCircleWithMaxRange()
         {
             Vector3 localPoint = Vector3.zero;
 
@@ -115,7 +120,7 @@ namespace TDS_MG.Combat
             return localPoint;
         }
 
-        private float GetMaxLifetime()
+        protected float GetMaxLifetime()
         {
             float lifetime = range / projectileSpeed;
             return lifetime;

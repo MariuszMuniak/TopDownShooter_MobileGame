@@ -21,7 +21,11 @@ namespace TDS_MG.Combat
         {
             InstantiateHitEffect(collision.GetContact(0).point);
             EnemyTakeDamage(collision.gameObject);
-            Destroy(gameObject);
+
+            if (collision.gameObject.GetComponent<Projectile>() == null)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void InstantiateHitEffect(Vector3 atPoint)

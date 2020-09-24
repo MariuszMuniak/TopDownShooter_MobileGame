@@ -15,6 +15,7 @@ namespace TDS_MG.Combat
         [SerializeField] float projectileSpeed = 10f;
         [SerializeField] GameObject projectile = null;
         [SerializeField] GameObject muzzleEffect = null;
+        [SerializeField] LineRenderer laser = null;
         [SerializeField] WeaponComponents weaponComponents = new WeaponComponents();
         [Space]
         [SerializeField] Mesh gizmoMesh = null;
@@ -31,6 +32,24 @@ namespace TDS_MG.Combat
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
+            Laser();
+        }
+
+        private void Laser()
+        {
+            if (laser != null && weaponComponents.Laser.activeSelf)
+            {
+                laser.SetPosition(0, laser.transform.position);
+
+                if (Physics.Raycast(laser.transform.position, laser.transform.forward, out RaycastHit hit, range))
+                {
+                    laser.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    laser.SetPosition(1, laser.transform.TransformPoint(Vector3.forward * range * 1.54f));
+                }
+            }
         }
 
         public int GetAmmoInMagazine() => ammoInMagazine;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5803122405976914811}
   - component: {fileID: 5803122405976914809}
   - component: {fileID: 5803122405976914808}
+  - component: {fileID: 3320572138770067717}
   m_Layer: 0
   m_Name: CoinExplosion
   m_TagString: Untagged
@@ -4938,3 +4939,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3320572138770067717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803122405976914810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901222e9bb4bc3e4488e4f6a1d9a0063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5

@@ -141,13 +141,13 @@ namespace TDS_MG.Shop
 
         public void UpgradeSelectedGunShopItem(WeaponStatsUpgradeTypeEnum upgradeType)
         {
-            WeaponStats stats = UpgradeSelectedItemWeaponStats(upgradeType);
-            int price = weaponStatsProgression.GetPrice(selectedItem.GetWeaponType(), stats, upgradeType);
+            int price = weaponStatsProgression.GetPrice(selectedItem.GetWeaponType(), weaponCollection.GetWeaponStats(selectedItem.GetWeaponType()), upgradeType);
+            WeaponStats upgradedStats = UpgradeSelectedItemWeaponStats(upgradeType);
 
             if (CanBuy(price))
             {
                 wallet.SpendMoney(price);
-                weaponCollection.SetWeaponStats(selectedItem.GetWeaponType(), stats);
+                weaponCollection.SetWeaponStats(selectedItem.GetWeaponType(), upgradedStats);
                 ShowConfiguredGunShopItemPanel(selectedItem);
                 savingWrapper.Save();
             }

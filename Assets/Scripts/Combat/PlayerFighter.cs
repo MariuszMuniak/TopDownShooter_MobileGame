@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TDS_MG.Animations;
 using TDS_MG.Movement;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace TDS_MG.Combat
         Transform characterModel;
         Weapon currentWeapon;
         bool isReloading = false;
+        bool isShooting = false;
 
         private void Awake()
         {
@@ -32,13 +34,18 @@ namespace TDS_MG.Combat
         {
             UpdateAnimatorParameters();
 
-            if (!isReloading)
+            FaceWeaponPointForward();
+
+            if (CanAttack())
             {
-                FaceWeaponPointForward();
                 Fire();
             }
+            else
+            {
+                isShooting = false;
+            }
 
-            if (currentWeapon != null && currentWeapon.MagazineIsEmpty())
+            if (currentWeapon.MagazineIsEmpty() && !isReloading)
             {
                 Reload();
             }
@@ -57,8 +64,15 @@ namespace TDS_MG.Combat
             weaponType = currentWeapon.GetWeaponType();
             weaponCollection.HideAllWeapons();
             weaponCollection.ShowWeapon(currentWeapon);
+            SetShootAnimationSpeed(currentWeapon);
             SetUpCurrentWeaponPosition();
             FinishReloading();
+        }
+
+        private void SetShootAnimationSpeed(Weapon weapon)
+        {
+            float multiplier = GetComponent<PlayerAnimatorHelper>().GetShootAnimationSpeed(weapon.GetWeaponType()) / weapon.GetTimeBetweenAttack();
+            animator.SetFloat("ShootSpeed_Multiplier_f", multiplier);
         }
 
         private void SetUpCurrentWeaponPosition()
@@ -117,6 +131,7 @@ namespace TDS_MG.Combat
             }
 
             animator.SetInteger("WeaponType_int", (int)weaponType);
+            animator.SetBool("Shoot_b", isShooting);
             animator.SetBool("Reload_b", isReloading);
             animator.SetFloat("Body_Horizontal_f", bodyHorizontal);
             animator.SetFloat("Body_Vertical_f", bodyVertical);
@@ -126,7 +141,7 @@ namespace TDS_MG.Combat
 
         private void FaceWeaponPointForward()
         {
-            if (currentWeapon == null) { return; }
+            if (currentWeapon == null && isReloading) { return; }
 
             Vector3 point = new Vector3
             {
@@ -139,14 +154,17 @@ namespace TDS_MG.Combat
             weaponPlace.LookAt(point);
         }
 
+        private bool CanAttack()
+        {
+            return currentWeapon.CanAttack() && !isReloading;
+        }
+
         private void Fire()
         {
             if (currentWeapon == null) { return; }
 
-            if (currentWeapon.CanAttack())
-            {
-                currentWeapon.Fire();
-            }
+            currentWeapon.Fire();
+            isShooting = true;
         }
 
         public void Reload()

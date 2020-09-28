@@ -27,7 +27,7 @@ namespace TDS_MG.Combat
         float timeSinceLastAttack = Mathf.Infinity;
         float reloadSpeed = 3f;
 
-        private void Start()
+        private void Awake()
         {
             ammoInMagazine = magazineSize;
         }
@@ -162,6 +162,11 @@ namespace TDS_MG.Combat
         public void RestoreAmmo()
         {
             ammoInMagazine = magazineSize;
+        }
+
+        public float GetTimeBetweenAttack()
+        {
+            return timeBetweenAttack;
         }
 
         public void SetDamage(int damage)

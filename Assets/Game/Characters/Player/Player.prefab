@@ -3190,6 +3190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8978039269739413837}
   - component: {fileID: 8978039269739413836}
+  - component: {fileID: 6065533873454282936}
   - component: {fileID: 6915360465153317323}
   - component: {fileID: 8978039269739413839}
   - component: {fileID: 8978039269739413938}
@@ -3241,6 +3242,14 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!81 &6065533873454282936
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978039269739413838}
+  m_Enabled: 1
 --- !u!114 &6915360465153317323
 MonoBehaviour:
   m_ObjectHideFlags: 0

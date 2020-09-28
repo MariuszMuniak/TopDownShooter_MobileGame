@@ -154,6 +154,7 @@ namespace TDS_MG.Combat
             if (currentWeapon == null || isReloading) { return; }
 
             isReloading = true;
+            currentWeapon.PlayReloadSound();
         }
 
         public Sprite NextWeapon()

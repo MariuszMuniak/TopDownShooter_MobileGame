@@ -17,6 +17,9 @@ namespace TDS_MG.Combat
         [SerializeField] GameObject muzzleEffect = null;
         [SerializeField] LineRenderer laser = null;
         [SerializeField] protected WeaponComponents weaponComponents = new WeaponComponents();
+        [SerializeField] AudioSource audioSource = null;
+        [SerializeField] AudioClip shotSound = null;
+        [SerializeField] AudioClip reloadSound = null;
         [Space]
         [SerializeField] Mesh gizmoMesh = null;
 
@@ -82,6 +85,7 @@ namespace TDS_MG.Combat
             InstantiateAndSetUpProjectile();
             InstantiateMuzzleEffect();
             ReduceAmmoInzMagazine();
+            PlayShotSound();
 
             timeSinceLastAttack = 0f;
         }
@@ -137,6 +141,22 @@ namespace TDS_MG.Combat
         private void ReduceAmmoInzMagazine()
         {
             ammoInMagazine = Mathf.Max(ammoInMagazine - 1, 0);
+        }
+
+        private void PlayShotSound()
+        {
+            if (shotSound != null)
+            {
+                audioSource.PlayOneShot(shotSound);
+            }
+        }
+
+        public void PlayReloadSound()
+        {
+            if (reloadSound != null)
+            {
+                audioSource.PlayOneShot(reloadSound);
+            }
         }
 
         public void RestoreAmmo()

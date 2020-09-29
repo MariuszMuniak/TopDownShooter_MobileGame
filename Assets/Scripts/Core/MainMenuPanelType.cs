@@ -4,6 +4,7 @@
     {
         MainPanel,
         CharacterPanel,
-        ShopPanel
+        ShopPanel,
+        OptionsPanel
     }
 }

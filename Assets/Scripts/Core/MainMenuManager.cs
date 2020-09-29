@@ -12,6 +12,7 @@ namespace TDS_MG.Core
 
         private void Start()
         {
+            CloseAllPanels();
             OpenPanel(MainMenuPanelType.MainPanel);
         }
 
@@ -31,6 +32,14 @@ namespace TDS_MG.Core
             if (openedPanel != null)
             {
                 openedPanel.SetActive(false);
+            }
+        }
+
+        private void CloseAllPanels()
+        {
+            foreach (GameObject panel in panels)
+            {
+                panel.SetActive(false);
             }
         }
     }

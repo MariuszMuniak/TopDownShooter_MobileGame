@@ -19,7 +19,9 @@ namespace TDS_MG.Props
             {
                 InstantiatePickUpEffekt();
                 GivePlayerRandomValue(other);
-                Destroy(gameObject);
+                DisableColliderAndMeshRenderer();
+                PlaySoundEffect();
+                Destroy(gameObject, 5f);
             }
         }
 
@@ -34,9 +36,21 @@ namespace TDS_MG.Props
         {
             if (pickUpEffect != null)
             {
-                GameObject instantiatedEffect =  Instantiate(pickUpEffect, coinModel.position, Quaternion.identity);
+                GameObject instantiatedEffect = Instantiate(pickUpEffect, coinModel.position, Quaternion.identity);
                 Destroy(instantiatedEffect, 5f);
             }
+        }
+
+        private void DisableColliderAndMeshRenderer()
+        {
+            GetComponent<SphereCollider>().enabled = false;
+            GetComponentInChildren<MeshRenderer>().enabled = false;
+        }
+
+        private void PlaySoundEffect()
+        {
+            AudioSource audioSource = GetComponentInChildren<AudioSource>();
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 }

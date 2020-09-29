@@ -164,6 +164,11 @@ namespace TDS_MG.Combat
             ammoInMagazine = magazineSize;
         }
 
+        public float GetReloadSpeed()
+        {
+            return reloadSpeed;
+        }
+
         public float GetTimeBetweenAttack()
         {
             return timeBetweenAttack;

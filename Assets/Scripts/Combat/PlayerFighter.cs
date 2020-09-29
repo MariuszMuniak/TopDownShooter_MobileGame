@@ -65,6 +65,7 @@ namespace TDS_MG.Combat
             weaponCollection.HideAllWeapons();
             weaponCollection.ShowWeapon(currentWeapon);
             SetShootAnimationSpeed(currentWeapon);
+            SetReloadAnimationSpeed(currentWeapon);
             SetUpCurrentWeaponPosition();
             FinishReloading();
         }
@@ -73,6 +74,12 @@ namespace TDS_MG.Combat
         {
             float multiplier = GetComponent<PlayerAnimatorHelper>().GetShootAnimationSpeed(weapon.GetWeaponType()) / weapon.GetTimeBetweenAttack();
             animator.SetFloat("ShootSpeed_Multiplier_f", multiplier);
+        }
+
+        private void SetReloadAnimationSpeed(Weapon weapon)
+        {
+            float multiplier = GetComponent<PlayerAnimatorHelper>().GetReloadAnimationSpeed(weapon.GetWeaponType()) / weapon.GetReloadSpeed();
+            animator.SetFloat("ReloadSpeed_Multiplier_f", multiplier);
         }
 
         private void SetUpCurrentWeaponPosition()

@@ -13,6 +13,11 @@ namespace TDS_MG.Animations
             return GetAnimationData(weaponType).shootAnimationSpeed;
         }
 
+        public float GetReloadAnimationSpeed(WeaponType weaponType)
+        {
+            return GetAnimationData(weaponType).reloadAnimationSpeed;
+        }
+
         private AnimationData GetAnimationData(WeaponType weaponType)
         {
             foreach (AnimationData animationData in animationDatas)
@@ -31,6 +36,7 @@ namespace TDS_MG.Animations
         {
             public WeaponType weaponType = WeaponType.NoWeapon;
             public float shootAnimationSpeed = 1f;
+            public float reloadAnimationSpeed = 1f;
         }
     }
 }

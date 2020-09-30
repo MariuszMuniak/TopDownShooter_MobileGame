@@ -1712,7 +1712,7 @@ PrefabInstance:
     - target: {fileID: 4647948751632753379, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.19922799
+      value: -0.19922796
       objectReference: {fileID: 0}
     - target: {fileID: 4647948751632753379, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
@@ -1722,7 +1722,7 @@ PrefabInstance:
     - target: {fileID: 4647948751632753379, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.84394324
+      value: 0.8439432
       objectReference: {fileID: 0}
     - target: {fileID: 4647948751632753379, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
@@ -1732,7 +1732,7 @@ PrefabInstance:
     - target: {fileID: 4647948752758358290, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.19922799
+      value: -0.19922796
       objectReference: {fileID: 0}
     - target: {fileID: 4647948752758358290, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
@@ -1742,7 +1742,7 @@ PrefabInstance:
     - target: {fileID: 4647948752758358290, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.84394324
+      value: 0.8439432
       objectReference: {fileID: 0}
     - target: {fileID: 4647948752758358290, guid: 470783e6222c7754eabf764b0b490d71,
         type: 3}
@@ -1891,11 +1891,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823012424961041640, guid: a91a8a44cb2c25441b98ec37052b2631,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5823012424961041643, guid: a91a8a44cb2c25441b98ec37052b2631,
         type: 3}

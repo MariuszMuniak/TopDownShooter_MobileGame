@@ -19,7 +19,39 @@ namespace TDS_MG.UI
 
         private void Update()
         {
-            filledImage.fillAmount = health.GetHealthPercentage();
+            float healthPercentage = health.GetHealthPercentage();
+
+            if (healthPercentage <= 0)
+            {
+                HideHealthBar();
+            }
+            else
+            {
+                ShowHealthBar();
+            }
+
+            filledImage.fillAmount = healthPercentage;
+        }
+
+        private void HideHealthBar()
+        {
+            foreach (Image image in GetImagesFromChildren())
+            {
+                image.enabled = false;
+            }
+        }
+
+        private void ShowHealthBar()
+        {
+            foreach (Image image in GetImagesFromChildren())
+            {
+                image.enabled = true;
+            }
+        }
+
+        private Image[] GetImagesFromChildren()
+        {
+            return GetComponentsInChildren<Image>();
         }
     }
 }

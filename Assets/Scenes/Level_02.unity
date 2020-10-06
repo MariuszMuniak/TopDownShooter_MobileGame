@@ -9359,6 +9359,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8978039269739413839, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: moveJoystick
+      value: 
+      objectReference: {fileID: 2102289610}
+    - target: {fileID: 8978039269739413839, guid: 5d6ae3810578b9d4690d42af18a8df6e,
+        type: 3}
+      propertyPath: rotationJoystick
+      value: 
+      objectReference: {fileID: 2102289609}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d6ae3810578b9d4690d42af18a8df6e, type: 3}
 --- !u!1001 &490319060
@@ -63277,6 +63287,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91a8a44cb2c25441b98ec37052b2631, type: 3}
+--- !u!114 &2102289609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8676665840847972355, guid: a91a8a44cb2c25441b98ec37052b2631,
+    type: 3}
+  m_PrefabInstance: {fileID: 2102289608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2102289610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8676665838785652638, guid: a91a8a44cb2c25441b98ec37052b2631,
+    type: 3}
+  m_PrefabInstance: {fileID: 2102289608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2102725137
 PrefabInstance:
   m_ObjectHideFlags: 0

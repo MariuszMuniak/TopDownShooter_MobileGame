@@ -72,12 +72,27 @@ namespace TDS_MG.Combat
                 hitEnemy = hit.collider.gameObject.CompareTag("Enemy");
             }
 
-            return !MagazineIsEmpty() && timeSinceLastAttack >= timeBetweenAttack && hitEnemy;
+            return !MagazineIsEmpty() && timeSinceLastAttack >= timeBetweenAttack && (hitEnemy || IsEnemyInCloseRange());
         }
 
         public bool MagazineIsEmpty()
         {
             return ammoInMagazine <= 0;
+        }
+
+        bool IsEnemyInCloseRange()
+        {
+            RaycastHit[] hitsInfo = Physics.SphereCastAll(transform.position, 1f, transform.forward);
+
+            foreach(RaycastHit hitInfo in hitsInfo)
+            {
+                if (hitInfo.collider.CompareTag("Enemy"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void Fire()

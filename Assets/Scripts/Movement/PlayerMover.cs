@@ -71,8 +71,6 @@ namespace TDS_MG.Movement
             bool moveRight = IsMovingRight(moveJoystickValue, characterJoystickValue);
             bool moveLeft = IsMovingLeft(moveJoystickValue, characterJoystickValue);
 
-            Debug.Log($"Move: {moveJoystick.Horizontal}/{moveJoystick.Vertical} | Rotation: {characterModel.forward.x}/{characterModel.forward.z}");
-
             animator.SetBool("Static_b", true);
             animator.SetFloat("Speed_f", velocity);
             animator.SetBool("RunBckward_b", moveBckward);

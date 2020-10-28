@@ -64,31 +64,20 @@ namespace TDS_MG.Movement
 
         private void UpdateAnimatorParameters()
         {
-            bool moveBckward = false;
             float velocity = characterController.velocity.magnitude;
-            int joystickValue = CoordinateSystemQuarter(moveJoystick.Horizontal, moveJoystick.Vertical);
-            int characterValue = CoordinateSystemQuarter(characterModel.forward.x, characterModel.forward.z);
+            int moveJoystickValue = CoordinateSystemQuarter(moveJoystick.Horizontal, moveJoystick.Vertical);
+            int characterJoystickValue = CoordinateSystemQuarter(characterModel.forward.x, characterModel.forward.z);
+            bool moveBckward = IsMovingBckward(moveJoystickValue, characterJoystickValue);
+            bool moveRight = IsMovingRight(moveJoystickValue, characterJoystickValue);
+            bool moveLeft = IsMovingLeft(moveJoystickValue, characterJoystickValue);
 
-            if (joystickValue == 1 && characterValue == 3)
-            {
-                moveBckward = true;
-            }
-            else if (joystickValue == 2 && characterValue == 4)
-            {
-                moveBckward = true;
-            }
-            else if (joystickValue == 3 && characterValue == 1)
-            {
-                moveBckward = true;
-            }
-            else if (joystickValue == 4 && characterValue == 1)
-            {
-                moveBckward = true;
-            }
+            Debug.Log($"Move: {moveJoystick.Horizontal}/{moveJoystick.Vertical} | Rotation: {characterModel.forward.x}/{characterModel.forward.z}");
 
             animator.SetBool("Static_b", true);
             animator.SetFloat("Speed_f", velocity);
             animator.SetBool("RunBckward_b", moveBckward);
+            animator.SetBool("RunRight_b", moveRight);
+            animator.SetBool("RunLeft_b", moveLeft);
         }
 
         private int CoordinateSystemQuarter(float x, float y)
@@ -115,6 +104,72 @@ namespace TDS_MG.Movement
             {
                 return 0;
             }
+        }
+
+        bool IsMovingBckward(int moveJoystickValue, int characterJoystickValue)
+        {
+            if (moveJoystickValue == 1 && characterJoystickValue == 3)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 2 && characterJoystickValue == 4)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 3 && characterJoystickValue == 1)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 4 && characterJoystickValue == 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        bool IsMovingRight(int moveJoystickValue, int characterJoystickValue)
+        {
+            if (moveJoystickValue == 1 && characterJoystickValue == 2)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 2 && characterJoystickValue == 3)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 3 && characterJoystickValue == 4)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 4 && characterJoystickValue == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        bool IsMovingLeft(int moveJoystickValue, int characterJoystickValue)
+        {
+            if (moveJoystickValue == 1 && characterJoystickValue == 4)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 2 && characterJoystickValue == 1)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 3 && characterJoystickValue == 2)
+            {
+                return true;
+            }
+            else if (moveJoystickValue == 4 && characterJoystickValue == 3)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool IsRunning() => moveJoystick.Direction != Vector2.zero;

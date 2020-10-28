@@ -17,6 +17,8 @@ namespace TDS_MG.Combat
         Weapon currentWeapon;
         bool isReloading = false;
         bool isShooting = false;
+        float timeLeftToEndReloading = 0;
+        float reloadAnimationMultiplier = 0;
 
         private void Awake()
         {
@@ -33,7 +35,6 @@ namespace TDS_MG.Combat
         private void Update()
         {
             UpdateAnimatorParameters();
-
             FaceWeaponPointForward();
 
             if (CanAttack())
@@ -43,6 +44,11 @@ namespace TDS_MG.Combat
             else
             {
                 isShooting = false;
+            }
+
+            if (isReloading)
+            {
+                timeLeftToEndReloading -= Time.deltaTime;
             }
 
             if (currentWeapon.MagazineIsEmpty() && !isReloading)
@@ -72,8 +78,8 @@ namespace TDS_MG.Combat
 
         private void SetShootAnimationSpeed(Weapon weapon)
         {
-            float multiplier = GetComponent<PlayerAnimatorHelper>().GetShootAnimationSpeed(weapon.GetWeaponType()) / weapon.GetTimeBetweenAttack();
-            animator.SetFloat("ShootSpeed_Multiplier_f", multiplier);
+            reloadAnimationMultiplier = GetComponent<PlayerAnimatorHelper>().GetShootAnimationSpeed(weapon.GetWeaponType()) / weapon.GetTimeBetweenAttack();
+            animator.SetFloat("ShootSpeed_Multiplier_f", reloadAnimationMultiplier);
         }
 
         private void SetReloadAnimationSpeed(Weapon weapon)
@@ -178,6 +184,7 @@ namespace TDS_MG.Combat
         {
             if (currentWeapon == null || isReloading) { return; }
 
+            timeLeftToEndReloading = currentWeapon.GetReloadSpeed();
             isReloading = true;
             currentWeapon.PlayReloadSound();
         }
@@ -217,6 +224,11 @@ namespace TDS_MG.Combat
             if (currentWeapon == null) { return; }
 
             currentWeapon.RestoreAmmo();
+        }
+
+        public float GetTimeLeftToEndReloading()
+        {
+            return timeLeftToEndReloading / currentWeapon.GetReloadSpeed();
         }
     }
 }

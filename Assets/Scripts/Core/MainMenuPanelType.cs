@@ -5,6 +5,7 @@
         MainPanel,
         CharacterPanel,
         ShopPanel,
-        OptionsPanel
+        OptionsPanel,
+        LevelSelectionPanel
     }
 }

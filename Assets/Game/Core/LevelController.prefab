@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6419757273643857896}
   - component: {fileID: 6419757273643857897}
+  - component: {fileID: 3630665910948030697}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -46,3 +47,16 @@ MonoBehaviour:
   timeToDisplayVictoryPanel: 15
   timeToDisplayDefeatPanel: 2
   rewardsPerLevel: e8030000881300004c1d0000c8320000384a0000a8610000007d0000b8880000409c000050c30000
+--- !u!114 &3630665910948030697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6419757273643857894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 1c639140-e0e8-439d-a7f0-5b04a6f78482

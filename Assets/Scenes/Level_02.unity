@@ -5085,10 +5085,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SA_Env_Road_StraightLarge_01
       objectReference: {fileID: 0}
-    - target: {fileID: 109392, guid: 395bfebd39b02e64682530ee733def37, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 475628, guid: 395bfebd39b02e64682530ee733def37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

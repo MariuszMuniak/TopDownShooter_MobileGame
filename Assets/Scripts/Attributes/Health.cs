@@ -7,10 +7,10 @@ namespace TDS_MG.Attributes
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] int maxHealth = 100;
-
         [HideInInspector] public UnityEvent OnDeath;
 
+        protected int maxHealth = 100;
+        
         int currentHealth;
         bool isDead = false;
 

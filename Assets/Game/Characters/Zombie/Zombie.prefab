@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1281446288398474216}
   - component: {fileID: 1281446288398474222}
   - component: {fileID: 1281446288398474221}
-  - component: {fileID: 1281446288398474223}
+  - component: {fileID: 7927497090564459629}
   - component: {fileID: 1281446288398474211}
   - component: {fileID: 1281446288398474220}
   - component: {fileID: 294133342107710874}
@@ -75,7 +75,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1281446288398474223
+--- !u!114 &7927497090564459629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,13 +84,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1281446288398474217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a4ef743a10f1c54987ee207e9e8932d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bf7c071defb71141a869c2b2cfce72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  maxHealthPerLevel: 6400000096000000c80000002c01000090010000
 --- !u!114 &1281446288398474211
 MonoBehaviour:
   m_ObjectHideFlags: 0

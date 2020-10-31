@@ -84,6 +84,11 @@ namespace TDS_MG.Control
             return complishedLevels[buildSceneIndex - 1];
         }
 
+        public int GecCurrentSceneBuildIndex()
+        {
+            return currentSceneBuildIndex;
+        }
+
         public object CaptureState()
         {
             return complishedLevels;

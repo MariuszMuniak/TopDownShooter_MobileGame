@@ -79,9 +79,14 @@ namespace TDS_MG.Control
             return MAX_SCENE_BUILD_INDEX;
         }
 
-        public bool IsLevelComplished(int buildSceneIndex)
+        public bool IsPreviousLevelComplished(int buildSceneIndex)
         {
-            return complishedLevels[buildSceneIndex - 1];
+            if (buildSceneIndex <= 1)
+            {
+                return true;
+            }
+
+            return complishedLevels[buildSceneIndex - 2];
         }
 
         public int GecCurrentSceneBuildIndex()

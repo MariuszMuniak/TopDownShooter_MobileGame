@@ -20,7 +20,7 @@ namespace TDS_MG.UI
 
         void Start()
         {
-            button.interactable = FindObjectOfType<LevelController>().IsLevelComplished(sceneBuildIndex);
+            button.interactable = FindObjectOfType<LevelController>().IsPreviousLevelComplished(sceneBuildIndex);
             button.onClick.AddListener(() => FindObjectOfType<SavingWrapper>().SaveAndLoadScene(sceneBuildIndex));
         }
     } 

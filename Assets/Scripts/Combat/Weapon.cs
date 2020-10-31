@@ -82,11 +82,11 @@ namespace TDS_MG.Combat
 
         bool IsEnemyInCloseRange()
         {
-            RaycastHit[] hitsInfo = Physics.SphereCastAll(transform.position, 1f, transform.forward);
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, 1f, transform.forward, 0f);
 
-            foreach(RaycastHit hitInfo in hitsInfo)
+            foreach(RaycastHit hit in hits)
             {
-                if (hitInfo.collider.CompareTag("Enemy"))
+                if (hit.collider.CompareTag("Enemy"))
                 {
                     return true;
                 }

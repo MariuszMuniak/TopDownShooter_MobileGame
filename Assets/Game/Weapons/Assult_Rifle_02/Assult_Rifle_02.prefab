@@ -51,7 +51,7 @@ MonoBehaviour:
   timeBetweenAttack: 0.5
   range: 15
   radius: 1
-  projectileSpeed: 10
+  projectileSpeed: 20
   projectile: {fileID: 406109102168165044, guid: d7054aea96dead54bb96a3b0254c31d6,
     type: 3}
   muzzleEffect: {fileID: 6194330859804084942, guid: 944c719534a08e34fb799bb419dac877,
@@ -60,7 +60,7 @@ MonoBehaviour:
   weaponComponents:
     acog: {fileID: 3770375970953745867}
     flashlight: {fileID: 3770375970953660781}
-    laser: {fileID: 3770375970953660781}
+    laser: {fileID: 3770375970953779691}
     reddot: {fileID: 3770375970953785853}
     silencer: {fileID: 3770375970953757519}
     barrel: {fileID: 5682857884896519982}

@@ -29,7 +29,6 @@ namespace TDS_MG.Control
             enemyGenerator = FindObjectOfType<EnemyGenerator>();
             panelsMenager = FindObjectOfType<GameplayPanelsMenager>();
             currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-            complishedLevels[0] = true;
         }
 
         private void Update()

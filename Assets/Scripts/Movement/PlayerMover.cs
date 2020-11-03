@@ -15,11 +15,13 @@ namespace TDS_MG.Movement
 
         CharacterController characterController;
         Animator animator;
+        Camera mainCamera;
 
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+            mainCamera = Camera.main;
         }
 
         private void Update()
@@ -52,14 +54,31 @@ namespace TDS_MG.Movement
         {
             if (rotationJoystick == null) { return; }
 
+            float angle = mainCamera.transform.rotation.eulerAngles.y;
+            Vector2 rotationJoystickDirection = MovePointByAngle(rotationJoystick.Direction, angle);
+
             Vector3 direction = new Vector3
             {
-                x = characterModel.position.x + rotationJoystick.Horizontal,
+                x = characterModel.position.x + rotationJoystickDirection.x,
                 y = characterModel.position.y,
-                z = characterModel.position.z + rotationJoystick.Vertical
+                z = characterModel.position.z + rotationJoystickDirection.y
             };
 
             characterModel.LookAt(direction);
+        }
+
+        private Vector2 MovePointByAngle(Vector2 point, float angle)
+        {
+            float angleSin = Mathf.Sin(angle);
+            float angleCos = Mathf.Cos(angle);
+
+            Vector2 newPoint = new Vector2
+            {
+                x = point.x * angleCos - point.y * angleSin,
+                y = point.x * angleSin + point.y * angleCos
+            };
+
+            return newPoint;
         }
 
         private void UpdateAnimatorParameters()

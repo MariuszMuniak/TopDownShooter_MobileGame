@@ -38,11 +38,14 @@ namespace TDS_MG.Movement
                 return;
             }
 
+            float angle = mainCamera.transform.rotation.eulerAngles.y;
+            Vector2 moveJoystickDirection = MovePointByAngle(moveJoystick.Direction, angle);
+
             Vector3 direction = new Vector3
             {
-                x = moveJoystick.Horizontal,
+                x = moveJoystickDirection.x,
                 y = IsGrounded() ? 0f : gravity,
-                z = moveJoystick.Vertical
+                z = moveJoystickDirection.y
             };
 
             characterController.Move(direction * speed * Time.deltaTime);

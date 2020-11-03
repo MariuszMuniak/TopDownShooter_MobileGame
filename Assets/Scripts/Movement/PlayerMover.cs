@@ -104,19 +104,22 @@ namespace TDS_MG.Movement
         {
             if (x == 0 && y == 0) { return 0; }
 
-            if (x >= 0f && y >= 0f)
+            Vector2 vector = new Vector2(x, y).normalized;
+            float sine = Mathf.Sin(45f);
+
+            if (vector.x >= -sine && y > 0 && vector.x < sine)
             {
                 return 1;
             }
-            else if (x < 0f && y >= 0f)
+            else if (vector.y >= -sine && x < 0 && y < sine)
             {
                 return 2;
             }
-            else if (x <= 0f && y <= 0f)
+            else if (vector.x > -sine && y < 0 && vector.x <= sine)
             {
                 return 3;
             }
-            else if (x > 0f && y < 0f)
+            else if (vector.y > -sine && x > 0 && y <= sine)
             {
                 return 4;
             }
